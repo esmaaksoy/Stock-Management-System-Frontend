@@ -1,11 +1,16 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate, Outlet } from 'react-router-dom'
+import Navbar from '../components/Navbar'
 
 const PrivateRouter = () => {
-    const {user} = useSelector((state)=>state.auth)
+    // const {user} = useSelector((state)=>state.auth)
+    const user = true
   return (
-user ? <Outlet/> : <Navigate to={"/"}/>
+user ? <>
+<Navbar/>
+<Outlet />
+</> : <Navigate to={"/"}/>
   )
 }
 
