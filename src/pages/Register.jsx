@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from "../assets/logo.png"
+import { NavLink } from 'react-router-dom'
 const Register = () => {
   return (
 <div className='h-screen flex items-center bg-gradient-to-r from-[#ABFB60] to-white'>
@@ -117,9 +118,9 @@ const Register = () => {
         <div className="flex items-center justify-between">
           <p className="text-sm text-gray-500">
           Do you have an account?
-            <a className="underline" href="">
+            <NavLink to={"/"} className="underline" href="">
               Sign In
-            </a>
+            </NavLink>
           </p>
           <button
             type="submit"

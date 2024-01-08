@@ -4,8 +4,8 @@ import { Navigate, Outlet } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 
 const PrivateRouter = () => {
-    // const {user} = useSelector((state)=>state.auth)
-    const user = true
+    const {user} = useSelector((state)=>state.auth)
+
   return (
 user ? <>
 <Navbar/>

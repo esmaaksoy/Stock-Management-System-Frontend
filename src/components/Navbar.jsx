@@ -16,6 +16,7 @@ import {
 } from "@heroicons/react/20/solid";
 import Switch from "./Switch";
 import logo from "../assets/logo.png";
+import { useSelector } from "react-redux";
 const products = [
   {
     name: "Analytics",
@@ -59,9 +60,9 @@ function classNames(...classes) {
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const user = true;
+  const {user} = useSelector((state)=> state.auth)
   return (
-    <header className="bg-white dark:bg-black">
+    <header className="bg-[#ABFB60] dark:bg-black">
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8"
         aria-label="Global"
