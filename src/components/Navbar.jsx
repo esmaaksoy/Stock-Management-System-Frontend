@@ -30,7 +30,7 @@ function classNames(...classes) {
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
+const user = true
   return (
     <header className="bg-white dark:bg-black">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
@@ -50,9 +50,9 @@ export default function Navbar() {
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
-        <Popover.Group className="hidden lg:flex lg:gap-x-12">
-          <Popover className="relative">
-            <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+        <Popover.Group className="hidden lg:flex lg:gap-x-12 ">
+          <Popover className="relative ">
+            <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 dark:text-white text-gray-900">
               Product
               <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
             </Popover.Button>
@@ -102,22 +102,25 @@ export default function Navbar() {
             </Transition>
           </Popover>
 
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <a href="#" className="text-sm font-semibold leading-6 text-gray-900 dark:text-white">
             Features
           </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <a href="#" className="text-sm font-semibold leading-6 text-gray-900 dark:text-white" >
             Marketplace
           </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <a href="#" className="text-sm font-semibold leading-6 text-gray-900 dark:text-white">
             Company
           </a>
         </Popover.Group>
        
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
         <Switch/>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+        {user ? <a href="#" className="text-sm font-semibold leading-6 text-gray-900 dark:text-white">
+            Logout <span aria-hidden="true">&rarr;</span>
+          </a> : <a href="#" className="text-sm font-semibold leading-6 text-gray-900 dark:text-white">
             Log in <span aria-hidden="true">&rarr;</span>
-          </a>
+          </a>}
+          
         </div>
       </nav>
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
