@@ -1,8 +1,10 @@
 import React from "react";
 import logo from "../assets/logo.png";
-import { NavLink } from "react-router-dom";
 import { Formik } from "formik";
+import RegisterForm, { registerSchema } from "../components/RegisterForm";
+import useAuthCalls from "../service/useAuthCalls";
 const Register = () => {
+  const {register} = useAuthCalls()
   return (
     <div className="h-screen flex items-center bg-gradient-to-r from-[#ABFB60] to-white">
       <section className=" custom-box-shadow relative flex flex-wrap  lg:items-center w-[50%] mx-auto rounded-[2rem] ">
@@ -27,9 +29,9 @@ const Register = () => {
               email: "",
               password: "",
             }}
-            validationSchema={registerShema}
+            validationSchema={registerSchema}
             onSubmit={(values, actions) =>{
-              registerSuccess(values)
+            register(values)
               actions.resetForm()
               actions.setSubmitting(false)
             }}

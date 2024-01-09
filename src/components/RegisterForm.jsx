@@ -1,4 +1,6 @@
 import { Form } from "formik"
+import { object, string } from "yup"
+import { NavLink } from "react-router-dom";
 export const registerSchema = object({
     username: string()
       .max(10, "The username must be less than 10 characters.")
@@ -35,7 +37,7 @@ const RegisterForm = ({ values,
     handleBlur,}) => {
   return (
     <Form>
-    <form action="" className="mx-auto mb-0 mt-8 max-w-md space-y-4">
+    <form className="mx-auto mb-0 mt-8 max-w-md space-y-4">
     <div>
       <label htmlFor="username" className="sr-only">
         UserName
