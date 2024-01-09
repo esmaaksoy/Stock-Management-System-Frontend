@@ -135,6 +135,7 @@ const RegisterForm = ({ values,
           value={values.password}
           onChange={handleChange}
           onBlur={handleBlur}
+          autoComplete="current-password"
         />
         <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
           <svg

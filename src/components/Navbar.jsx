@@ -17,6 +17,8 @@ import {
 import Switch from "./Switch";
 import logo from "../assets/logo.png";
 import { useSelector } from "react-redux";
+import useAuthCalls from "../service/useAuthCalls";
+import { NavLink } from "react-router-dom";
 const products = [
   {
     name: "Analytics",
@@ -61,6 +63,7 @@ function classNames(...classes) {
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const {user} = useSelector((state)=> state.auth)
+  const {logout} = useAuthCalls()
   return (
     <header className="bg-[#ABFB60] dark:bg-black">
       <nav
@@ -168,12 +171,13 @@ export default function Navbar() {
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Switch />
           {user ? (
-            <a
-              href="#"
+            <button
+        
               className="text-sm font-semibold leading-6 text-gray-900 dark:text-white"
+              onClick={()=>logout()}
             >
               Logout <span aria-hidden="true">&rarr;</span>
-            </a>
+            </button>
           ) : (
             <a
               href="#"
@@ -260,12 +264,13 @@ export default function Navbar() {
               </div>
               <div className="py-6">
                 {user ? (
-                  <a
-                    href="#"
+                  <button
+                 
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    onClick={()=>logout()}
                   >
                     Logout
-                  </a>
+                  </button>
                 ) : (
                   <a
                     href="#"
