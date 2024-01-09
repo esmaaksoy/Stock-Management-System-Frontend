@@ -37,7 +37,7 @@ const RegisterForm = ({ values,
     handleBlur,}) => {
   return (
     <Form>
-    <form className="mx-auto mb-0 mt-8 max-w-md space-y-4">
+    <div className="mx-auto mb-0 mt-8 max-w-md space-y-4">
     <div>
       <label htmlFor="username" className="sr-only">
         UserName
@@ -175,7 +175,7 @@ const RegisterForm = ({ values,
         Sign Up
       </button>
     </div>
-  </form>
+  </div>
   </Form>
   )
 }
