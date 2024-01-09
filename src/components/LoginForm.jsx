@@ -75,6 +75,7 @@ export const loginSchema = object({
                 value={values.password}
                 onChange={handleChange}
                 onBlur={handleBlur}
+              
               />
            
               <span className="absolute inset-y-0 end-0 grid place-content-center px-4">

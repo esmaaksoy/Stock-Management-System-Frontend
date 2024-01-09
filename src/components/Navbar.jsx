@@ -174,7 +174,7 @@ export default function Navbar() {
             <button
         
               className="text-sm font-semibold leading-6 text-gray-900 dark:text-white"
-              onClick={()=>logout()}
+              onClick={logout}
             >
               Logout <span aria-hidden="true">&rarr;</span>
             </button>
@@ -267,7 +267,7 @@ export default function Navbar() {
                   <button
                  
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                    onClick={()=>logout()}
+                    onClick={logout}
                   >
                     Logout
                   </button>

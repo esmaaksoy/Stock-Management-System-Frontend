@@ -1,10 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
-    user: "",
-    loading: false,
-    error: false,
-    token: "",
-  }
+  user: "",
+  loading: false,
+  error: false,
+  token: "",
+};
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -17,15 +17,15 @@ const authSlice = createSlice({
       state.user = payload.uset.username;
       state.token = payload.token;
     },
-    registerSuccess: (state,{payload}) => {
-        state.loading = false;
-        state.user = payload.data.username
-        state.token = payload.token
+    registerSuccess: (state, { payload }) => {
+      state.loading = false;
+      state.user = payload.data.username;
+      state.token = payload.token;
     },
-    logoutSuccess : (state)=>{
-state.loading = false
-state.user = ""
-state.token = ""
+    logoutSuccess: (state) => {
+      state.loading = false;
+      state.user = "";
+      state.token = "";
     },
     fetchFail: (state) => {
       state.loading = false;
@@ -33,5 +33,11 @@ state.token = ""
     },
   },
 });
-export const {fetchStart, loginSuccess, fetchFail, registerSuccess, logoutSuccess} = authSlice.actions
-export default authSlice.reducer
+export const {
+  fetchStart,
+  loginSuccess,
+  fetchFail,
+  registerSuccess,
+  logoutSuccess,
+} = authSlice.actions;
+export default authSlice.reducer;
