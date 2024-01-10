@@ -33,9 +33,6 @@ const Login = () => {
             }}
             component={(props)=> <LoginForm {...props}/>}
           >
-           
-              
-          
           </Formik>
         </div>
       </section>
