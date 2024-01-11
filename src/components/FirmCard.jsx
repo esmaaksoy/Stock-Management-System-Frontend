@@ -1,6 +1,6 @@
 const FirmCard = ({ name, address, phone, _id, image }) => {
   return (
-    <div className="block rounded-lg p-4 shadow-sm shadow-indigo-100 border-2 border-[#ABFB60]">
+    <div className="block rounded-lg p-4 shadow-sm shadow-indigo-100 border-2 border-[#ABFB60] dark:text-white " >
       <img
         alt="Home"
         src={image}
@@ -10,10 +10,10 @@ const FirmCard = ({ name, address, phone, _id, image }) => {
         <dl className="flex justify-between">
           <div>
             <dt className="sr-only">Firm Name</dt>
-            <dd className="text-md text-gray-500 font-bold">{name}</dd>
+            <dd className="text-md text-gray-500 font-bold dark:text-white">{name}</dd>
           </div>
         </dl>
-        <div className="mt-6 items-center gap-8 text-xs h-[100px]">
+        <div className="mt-6 items-center gap-8 text-xs h-[100px] ">
           <div className="flex gap-1 ">
             <div>
             <svg
@@ -22,7 +22,7 @@ const FirmCard = ({ name, address, phone, _id, image }) => {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="h-4 w-4 text-gray-500"
+              className="h-4 w-4 text-gray-500 dark:text-white"
             >
               <path
                 strokeLinecap="round"
@@ -32,7 +32,7 @@ const FirmCard = ({ name, address, phone, _id, image }) => {
             </svg>
             </div>
             <div className=" mt-1.5 sm:mt-0">
-              <p className="text-gray-500">Phone</p>
+              <p className="text-gray-500 dark:text-white">Phone</p>
               <p className="font-medium">{phone}</p>
             </div>
           </div>
@@ -44,7 +44,7 @@ const FirmCard = ({ name, address, phone, _id, image }) => {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-4 h-4"
+              className="w-4 h-4  text-gray-500 dark:text-white"
             >
               <path
                 strokeLinecap="round"
@@ -59,7 +59,7 @@ const FirmCard = ({ name, address, phone, _id, image }) => {
             </svg>           
             </div>
             <div className=" mt-1.5 sm:mt-0">
-            <p className="text-gray-500">Adress</p>
+            <p className="text-gray-500 dark:text-white">Adress</p>
               <p className="font-medium">{address}</p>
             </div>
           </div>
