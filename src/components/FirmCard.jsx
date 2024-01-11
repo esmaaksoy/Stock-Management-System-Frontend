@@ -1,21 +1,73 @@
-const FirmCard = () => {
+const FirmCard = ({ name, address, phone, _id, image }) => {
   return (
-    <div className="block rounded-lg p-4 shadow-sm shadow-indigo-100">
+    <div className="block rounded-lg p-4 shadow-sm shadow-indigo-100 border-2 border-[#ABFB60]">
       <img
         alt="Home"
-        src="https://images.unsplash.com/photo-1613545325278-f24b0cae1224?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-        className="h-56 w-full rounded-md object-cover"
+        src={image}
+        className="h-56 w-full rounded-md object-contain"
       />
-
       <div className="mt-2">
         <dl className="flex justify-between">
           <div>
             <dt className="sr-only">Firm Name</dt>
-            <dd className="text-sm text-gray-500">Firm Name</dd>
+            <dd className="text-md text-gray-500 font-bold">{name}</dd>
           </div>
-          <span className="inline-flex overflow-hidden rounded-md border bg-white shadow-sm">
+        </dl>
+        <div className="mt-6 items-center gap-8 text-xs h-[100px]">
+          <div className="flex gap-1 ">
+            <div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="h-4 w-4 text-gray-500"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"
+              />
+            </svg>
+            </div>
+            <div className=" mt-1.5 sm:mt-0">
+              <p className="text-gray-500">Phone</p>
+              <p className="font-medium">{phone}</p>
+            </div>
+          </div>
+          <div className="flex gap-1 ">
+            <div  >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-4 h-4"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+              />
+            </svg>           
+            </div>
+            <div className=" mt-1.5 sm:mt-0">
+            <p className="text-gray-500">Adress</p>
+              <p className="font-medium">{address}</p>
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-end ">
+          <span className="inline-flex  overflow-hidden rounded-md border bg-white shadow-sm  ">
             <button
-              className="inline-block border-e p-3 text-gray-700 hover:bg-gray-50 focus:relative"
+              className="inline-block border-e p-3 text-gray-900 bg-[#ABFB60] hover:bg-gray-200 focus:relative"
               title="Edit Product"
             >
               <svg
@@ -34,7 +86,7 @@ const FirmCard = () => {
               </svg>
             </button>
             <button
-              className="inline-block p-3 text-gray-700 hover:bg-gray-50 focus:relative"
+              className="inline-block p-3 text-gray-900 bg-[#ABFB60] hover:bg-gray-200 focus:relative"
               title="Delete Product"
             >
               <svg
@@ -53,47 +105,6 @@ const FirmCard = () => {
               </svg>
             </button>
           </span>
-        </dl>
-        <div className="mt-6 flex items-center gap-8 text-xs">
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="h-4 w-4 text-gray-500"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"
-              />
-            </svg>
-
-            <div className=" mt-1.5 sm:mt-0">
-              <p className="text-gray-500">Phone</p>
-              <p className="font-medium">224 569 00 32</p>
-            </div>
-          </div>
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="h-4 w-4 text-gray-500"
-            >
-              <path
-                fillRule="evenodd"
-                d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <div className=" mt-1.5 sm:mt-0">
-              <p className="text-gray-500">Adress</p>
-              <p className="font-medium">123 Wallaby Avenue, Park Road</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
