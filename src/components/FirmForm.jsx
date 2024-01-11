@@ -1,4 +1,4 @@
-const FirmForm = () => {
+const FirmForm = ({setShow}) => {
   const input = [
     { type: "text", placeholder: "Firm Name" },
     { type: "text", placeholder: "Phone" },
@@ -14,6 +14,7 @@ const FirmForm = () => {
           className="w-full rounded-lg border border-gray-300 p-4 pe-12 text-sm shadow-sm"
         />
       ))}
+      <button onClick={()=>setShow(true)} type="submit" className="block w-full rounded-lg bg-[#ABFB60] px-5 py-3 text-sm font-medium text-black"> Submit</button>
     </form>
   );
 };

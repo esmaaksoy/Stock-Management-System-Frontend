@@ -1,4 +1,4 @@
-const CardFirm = () => {
+const FirmCard = () => {
   return (
     <div className="block rounded-lg p-4 shadow-sm shadow-indigo-100">
       <img
@@ -100,4 +100,4 @@ const CardFirm = () => {
   );
 };
 
-export default CardFirm;
+export default FirmCard;
