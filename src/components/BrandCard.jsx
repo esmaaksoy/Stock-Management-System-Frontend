@@ -12,8 +12,7 @@ const BrandCard = ({ name, image,_id }) => {
               <dt className="sr-only">Firm Name</dt>
               <dd className="text-md text-gray-500 font-bold">{name}</dd>
             </div>
-          </dl>
-       
+          </dl>      
           <div className="flex justify-end ">
             <span className="inline-flex  overflow-hidden rounded-md border bg-white shadow-sm  ">
               <button

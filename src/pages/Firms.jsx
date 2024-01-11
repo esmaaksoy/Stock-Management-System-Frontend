@@ -28,6 +28,7 @@ const Firms = () => {
       {show && <FirmForm setShow={setShow} />}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-10">
+    
         {firms?.map((firm) => (
           <FirmCard key={firm._id} {...firm} />
         ))}
