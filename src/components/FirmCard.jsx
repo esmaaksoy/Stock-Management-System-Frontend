@@ -1,4 +1,7 @@
+import useStockCalls from "../service/useStockCalls";
+
 const FirmCard = ({ name, address, phone, _id, image }) => {
+  const {deleteStocks} = useStockCalls()
   return (
     <div className="block rounded-lg p-4 shadow-sm shadow-indigo-100 border-2 border-[#ABFB60] dark:text-white " >
       <img
@@ -88,6 +91,7 @@ const FirmCard = ({ name, address, phone, _id, image }) => {
             <button
               className="inline-block p-3 text-gray-900 bg-[#ABFB60] hover:bg-gray-200 focus:relative"
               title="Delete Product"
+              onClick={()=>deleteStocks("firms",_id)}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

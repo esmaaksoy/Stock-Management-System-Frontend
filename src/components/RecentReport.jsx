@@ -36,12 +36,12 @@ const TABLE_ROWS = [
 ];
  const RecentReport = () => {
     return (
-        <Card className="shadow-lg">
-          <table className=" text-left ">
+        <Card className="shadow-lg flex-1 overflow-x-auto ">
+          <table className="text-left">
             <thead className="bg-[#ABFB60]">
               <tr>
                 {TABLE_HEAD.map((head) => (
-                  <th key={head} className="border-b border-blue-gray-100 p-4 ">
+                  <th key={head} className="border-b border-blue-gray-100 py-4 p-2 lg:p-4 ">
                     <Typography
                       variant="small"
                       color="blue-gray"
@@ -56,22 +56,22 @@ const TABLE_ROWS = [
             <tbody>
               {TABLE_ROWS.map(({ name, job, date,value }) => (
                 <tr key={name} className="even:bg-blue-gray-50/50">
-                  <td className="p-4">
+                  <td className="py-4 p-2 lg:p-4">
                     <Typography variant="small" color="blue-gray" className="font-normal">
                       {name}
                     </Typography>
                   </td>
-                  <td className="p-4">
+                  <td className="py-4 p-2 lg:p-4">
                     <Typography variant="small" color="blue-gray" className="font-normal">
                       {job}
                     </Typography>
                   </td>
-                  <td className="p-4">
+                  <td className="py-4 p-2 lg:p-4">
                     <Typography variant="small" color="blue-gray" className="font-normal">
                       {date}
                     </Typography>
                   </td>
-                  <td className="p-4">
+                  <td className="py-4 p-2 lg:p-4">
                   <Progress value={value} color="light-green" />
                   </td>
                 </tr>

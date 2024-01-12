@@ -96,7 +96,7 @@ const LineChart = () => {
         },
       };
   return (
-    <Card className="flex shadow-lg ">
+    <Card className="shadow-lg flex-1 ">
     <CardHeader
       floated={false}
       shadow={false}

@@ -7,7 +7,6 @@ import {
   import Chart from "react-apexcharts";
   import { Square3Stack3DIcon } from "@heroicons/react/24/outline";
 
-  
   const BarChart = () => {
     const chartConfig = {
         type: "bar",
@@ -97,7 +96,7 @@ import {
         },
       };
     return (
-        <Card className="shadow-lg ">
+        <Card className="shadow-lg flex-1">
         <CardHeader
           floated={false}
           shadow={false}
