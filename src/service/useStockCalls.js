@@ -27,7 +27,20 @@ const useStockCalls = () => {
       toastErrorNotify("Data could not be deleted.");
     }
   };
-  return { getStocks, deleteStocks };
+  const postStock= async(url="firms", info)=>{
+    dispatch(fetchStart())
+    try {
+         await axiosWithToken.post(`${url}`,info) 
+        getStocks(url)
+        toastSuccessNotify("Data has been added.")
+    } catch (error) {
+        dispatch(fetchFail())
+        toastErrorNotify("Data could not be added.")
+    }
+
+  }
+
+  return { getStocks, deleteStocks, postStock };
 };
 
 export default useStockCalls;
