@@ -7,11 +7,10 @@ const Firms = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   const { firms } = useSelector((state) => state.stock);
-  const {getStocks} = useStockCalls()
+  const { getStocks } = useStockCalls();
   useEffect(() => {
     getStocks("firms");
   }, []);
-
   return (
     <div className="dark:bg-gray-900">
       <div className="text-center pt-6">
@@ -26,7 +25,7 @@ const Firms = () => {
         </button>
         <FirmForm open={open} handleOpen={handleOpen} />
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-10">    
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-10">
         {firms?.map((firm) => (
           <FirmCard key={firm._id} {...firm} />
         ))}

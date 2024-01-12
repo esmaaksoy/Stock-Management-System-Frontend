@@ -4,7 +4,7 @@ import LineChart from "../components/LineChart";
 import BarChart from "../components/BarChart";
 const Dashboard = () => {
   return (
-    <div className="p-4 h-screen dark:bg-gray-900">
+    <div className="p-4 dark:bg-gray-900">
     <Stats />
     <div className="flex flex-col lg:flex-row gap-3 px-4 py-12 sm:px-6 md:py-16 lg:px-8">
       <LineChart />
