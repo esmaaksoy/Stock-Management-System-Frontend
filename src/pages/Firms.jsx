@@ -5,9 +5,16 @@ import { useSelector } from "react-redux";
 import useStockCalls from "../service/useStockCalls";
 const Firms = () => {
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(!open);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {setData({ name: "", phone: "", address: "", image: "" }); setOpen(false);}
   const { firms } = useSelector((state) => state.stock);
   const { getStocks } = useStockCalls();
+  const [data, setData] = useState({
+    name: "",
+    phone: "",
+    address: "",
+    image: "",
+  });
   useEffect(() => {
     getStocks("firms");
   }, []);
@@ -23,11 +30,11 @@ const Firms = () => {
             Add Firm
           </span>
         </button>
-        <FirmForm open={open} handleOpen={handleOpen} />
+        <FirmForm open={open} handleOpen={handleOpen} handleClose={handleClose} data={data} setData={setData}/>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-10">
         {firms?.map((firm) => (
-          <FirmCard key={firm._id} {...firm} />
+          <FirmCard key={firm._id} firm={firm} setData={setData}  handleOpen={handleOpen}/>
         ))}
       </div>
     </div>

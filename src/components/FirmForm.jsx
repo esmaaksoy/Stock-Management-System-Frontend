@@ -1,33 +1,31 @@
 import { Dialog } from "@material-tailwind/react";
 import { useState } from "react";
 import useStockCalls from "../service/useStockCalls";
-const FirmForm = ({ open, handleOpen }) => {
+const FirmForm = ({ open,handleClose, data, setData }) => {
   const input = [
     { type: "text", placeholder: "Firm Name", name: "name" },
     { type: "text", placeholder: "Phone", name: "phone" },
     { type: "text", placeholder: "Adress", name: "address" },
     { type: "url", placeholder: "Image Url", name: "image" },
   ];
-  const [data, setData] = useState({
-    name: "",
-    phone: "",
-    address: "",
-    image: "",
-  });
+
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
-  const { postStock } = useStockCalls();
+  const { postStock, putStock } = useStockCalls();
   const handleSubmit = (e) => {
     e.preventDefault();
-    postStock("firms", data);
-    setData({ name: "", phone: "", address: "", image: "" });
-    handleOpen();
+    if (data._id) {
+      putStock("firms", data);
+    } else {
+      postStock("firms", data);
+    }
+    handleClose();
   };
   return (
     <Dialog
       open={open}
-      handler={handleOpen}
+      handler={handleClose}
       className="rounded-lg p-4 sm:p-6 lg:p-8  dark:bg-[#00000084] bg-[#fdfdfdc8]"
     >
       <form onSubmit={handleSubmit}>
@@ -43,12 +41,11 @@ const FirmForm = ({ open, handleOpen }) => {
           />
         ))}
         <button
-          onClick={handleOpen}
+          onClick={handleClose}
           type="submit"
           className="block w-full rounded-lg bg-[#ABFB60] px-5 py-3 text-sm font-medium text-black"
         >
-          {" "}
-          Submit
+        {data._id ? "Update Firm" : "Add Firm"}
         </button>
       </form>
     </Dialog>

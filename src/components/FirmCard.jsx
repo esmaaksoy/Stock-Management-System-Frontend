@@ -1,7 +1,8 @@
 import useStockCalls from "../service/useStockCalls";
 
-const FirmCard = ({ name, address, phone, _id, image }) => {
+const FirmCard = ({firm, handleOpen, setData }) => {
   const {deleteStocks} = useStockCalls()
+  const { name, address, phone, _id, image} = firm
   return (
     <div className="block rounded-lg p-4 shadow-sm shadow-indigo-100 border-2 border-[#ABFB60] dark:text-white " >
       <img
@@ -72,6 +73,10 @@ const FirmCard = ({ name, address, phone, _id, image }) => {
             <button
               className="inline-block border-e p-3 text-gray-900 bg-[#ABFB60] hover:bg-gray-200 focus:relative"
               title="Edit Product"
+              onClick={() => {
+                handleOpen()
+                setData(firm)
+              }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

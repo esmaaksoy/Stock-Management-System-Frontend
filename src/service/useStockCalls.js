@@ -39,8 +39,20 @@ const useStockCalls = () => {
     }
 
   }
+  const putStock = async(url="firms", info)=>{
+    dispatch(fetchStart());
+    try {
+      await axiosWithToken.put(`/${url}/${info._id}/`, info);
+      toastSuccessNotify("Data has been updated.");
+      getStocks(url)
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify("Data could not be updated.");
+    }
+  
+  }
 
-  return { getStocks, deleteStocks, postStock };
+  return { getStocks, deleteStocks, postStock,putStock };
 };
 
 export default useStockCalls;
