@@ -4,7 +4,7 @@ const FirmCard = ({firm, handleOpen, setData }) => {
   const {deleteStocks} = useStockCalls()
   const { name, address, phone, _id, image} = firm
   return (
-    <div className="block rounded-lg p-4 shadow-sm shadow-indigo-100 border-2 border-[#ABFB60] dark:text-white " >
+    <div className="block rounded-lg p-4 shadow-sm shadow-indigo-100 border-2 border-[#ABFB60] dark:text-white dark:bg-black" >
       <img
         alt="Home"
         src={image}

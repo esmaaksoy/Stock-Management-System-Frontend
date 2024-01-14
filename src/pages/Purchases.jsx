@@ -1,9 +1,7 @@
 import React from 'react'
 
 const Purchases = () => {
-  return (
-    <div>Purchases</div>
-  )
+<div></div>
 }
 
 export default Purchases

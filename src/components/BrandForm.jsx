@@ -1,31 +1,30 @@
 import {
   Dialog,
 } from "@material-tailwind/react";
-import { useState } from "react";
 import useStockCalls from "../service/useStockCalls";
-const BrandForm = ({open, handleOpen}) => {
+const BrandForm = ({open,handleClose, data, setData}) => {
     const input = [
       { type: "text", placeholder: "Brand Name", name:"name" },
       { type: "url", placeholder: "Image Url", name:"image" },
     ];
-    const [data, setData] = useState({
-      name: "",
-      image: "",
-    });
+
     const handleChange = (e) => {
       setData({ ...data, [e.target.name]: e.target.value });
     };
-    const { postStock } = useStockCalls();
+    const { postStock, putStock } = useStockCalls();
     const handleSubmit = (e) => {
       e.preventDefault();
-      postStock("brands", data);
-      setData({ name: "", image: "" });
-      handleOpen();
+      if(data._id){
+        putStock("brands",data)
+      }else{
+        postStock("brands", data);
+      }
+      handleClose();
     };
     return (
       <Dialog
       open={open}
-      handler={handleOpen}
+      handler={handleClose}
       className="rounded-lg p-4 sm:p-6 lg:p-8  dark:bg-[#00000084] bg-[#fdfdfdc8]"
     >
       <form onSubmit={handleSubmit}>
@@ -38,15 +37,14 @@ const BrandForm = ({open, handleOpen}) => {
             className="w-full rounded-lg border border-gray-300 p-4 pe-12 text-sm shadow-sm mb-3"
           value={data[name]}
           onChange={handleChange}
+          autocomplete="off"
           />
         ))}
         <button
-          onClick={handleOpen}
           type="submit"
           className="block w-full rounded-lg bg-[#ABFB60] px-5 py-3 text-sm font-medium text-black"
         >
-          {" "}
-          Submit
+          {data._id ? "Update Brand" : "Add Brand"}
         </button>
       </form>
     </Dialog>

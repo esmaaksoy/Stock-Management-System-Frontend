@@ -68,6 +68,7 @@ const RegisterForm = ({ values,
           value={values.firstName}
           onChange={handleChange}
           onBlur={handleBlur}
+          autocomplete="off"
         />
       </div>
       {touched.firstName && Boolean(errors.firstName) && <span className="text-red-500">{errors.firstName}</span>}
@@ -85,6 +86,7 @@ const RegisterForm = ({ values,
           value={values.lastName}
           onChange={handleChange}
           onBlur={handleBlur}
+          autocomplete="off"
         />
       </div>
       {touched.lastName && Boolean(errors.lastName) && <span className="text-red-500">{errors.lastName}</span>}
@@ -102,6 +104,7 @@ const RegisterForm = ({ values,
           value={values.email}
           onChange={handleChange}
           onBlur={handleBlur}
+          autocomplete="off"
         />
         <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
           <svg

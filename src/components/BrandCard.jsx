@@ -1,7 +1,8 @@
 import useStockCalls from "../service/useStockCalls";
 
-const BrandCard = ({ name, image,_id }) => {
+const BrandCard = ({setData,brand,handleOpen }) => {
   const {deleteStocks} = useStockCalls()
+  const {name, image,_id}=brand
     return (
         <div className="block rounded-lg p-4 shadow-sm shadow-indigo-100 border-2 border-[#ABFB60]">
         <img
@@ -21,6 +22,7 @@ const BrandCard = ({ name, image,_id }) => {
               <button
                 className="inline-block border-e p-3 text-gray-900 bg-[#ABFB60] hover:bg-gray-200 focus:relative"
                 title="Edit Product"
+                onClick={()=>{handleOpen(); setData(brand)}}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

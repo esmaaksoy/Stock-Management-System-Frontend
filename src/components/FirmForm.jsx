@@ -8,7 +8,6 @@ const FirmForm = ({ open,handleClose, data, setData }) => {
     { type: "text", placeholder: "Adress", name: "address" },
     { type: "url", placeholder: "Image Url", name: "image" },
   ];
-
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
@@ -38,6 +37,7 @@ const FirmForm = ({ open,handleClose, data, setData }) => {
             className="w-full rounded-lg border border-gray-300 p-4 pe-12 text-sm shadow-sm mb-3 "
             value={data[name]}
             onChange={handleChange}
+            autocomplete="off"
           />
         ))}
         <button
