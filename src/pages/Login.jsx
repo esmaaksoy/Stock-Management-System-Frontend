@@ -9,7 +9,7 @@ const Login = () => {
 
   return (
     <div className="h-screen flex items-center bg-gradient-to-r from-[#ABFB60] to-white">
-      <section className=" custom-box-shadow relative flex flex-wrap  lg:items-center w-[50%] mx-auto rounded-[2rem] ">
+      <section className="custom-box-shadow relative flex flex-wrap lg:items-center w-[50%] mx-auto rounded-[2rem] ">
         <div className="relative w-full sm:h-96  lg:w-1/2">
           <img
             alt="Welcome"

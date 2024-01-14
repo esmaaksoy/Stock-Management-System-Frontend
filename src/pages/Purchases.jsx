@@ -1,7 +1,9 @@
 import React from 'react'
 
 const Purchases = () => {
-<div></div>
+  return (
+    <div className='min-h-[100vh]'>Purchases</div>
+  )
 }
 
 export default Purchases

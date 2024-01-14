@@ -9,8 +9,6 @@ const initialState = {
     error: false,
     firms: [],
   }
-
-  
   const stockSlice = createSlice({
     name:"stock",
     initialState,

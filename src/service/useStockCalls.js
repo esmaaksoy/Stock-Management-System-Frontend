@@ -1,13 +1,13 @@
 import { useDispatch } from "react-redux";
 import useAxios from "./useAxios";
-import { fetchFail, fetchStart } from "../features/authSlice";
+import { fetchFail, fetchStart } from "../features/stockSlice";
 import { getStockSuccess } from "../features/stockSlice";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 const useStockCalls = () => {
   const dispatch = useDispatch();
   const { axiosWithToken } = useAxios();
   const getStocks = async (url = "firms") => {
-    dispatch(fetchStart);
+    dispatch(fetchStart());
     try {
       const { data } = await axiosWithToken(`${url}`);
       const apiData = data.data;

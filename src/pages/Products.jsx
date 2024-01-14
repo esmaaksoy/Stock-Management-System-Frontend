@@ -83,9 +83,9 @@ const TABLE_ROWS = [
 ];
 const Products = () => {
   return (
-    <Card className="h-full w-full ">
+    <Card className="h-full w-full dark:bg-gray-900 rounded-none">
       <CardHeader floated={false} shadow={false} className="rounded-none">
-        <div className="mb-8 flex items-center justify-between gap-8">
+        <div className="pb-8 flex items-center justify-between gap-8 dark:bg-gray-900">
           <div>
             <Typography variant="h5" color="blue-gray">
             Product List
@@ -100,13 +100,13 @@ const Products = () => {
           // onClick={handleOpen}
         >
           <span className="absolute rounded-md inset-0 translate-x-1.5 translate-y-1.5 bg-[#ABFB60] transition-transform group-hover:translate-x-0 group-hover:translate-y-0"></span>
-          <span className="relative rounded-md inline-block border-2 border-current px-8 py-3 text-sm font-bold uppercase tracking-widest text-black group-active:text-opacity-75">
+          <span className="relative rounded-md inline-block border-2 border-current dark:border-white px-8 py-3 text-sm font-bold uppercase tracking-widest text-black group-active:text-opacity-75">
             Add Firm
           </span>
         </button>
           </div>
         </div>
-        <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 md:flex-row dark:bg-gray-900">
           <Tabs value="all" className="w-full md:w-max">
             <TabsHeader>
               {TABS.map(({ label, value }) => (
