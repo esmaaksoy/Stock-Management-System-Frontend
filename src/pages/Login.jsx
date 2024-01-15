@@ -1,12 +1,11 @@
 import React from "react";
 import logo from "../assets/logo.png";
 import useAuthCalls from "../service/useAuthCalls";
-import { Formik} from "formik";
-import {loginSchema} from "../components/LoginForm"
+import { Formik } from "formik";
+import { loginSchema } from "../components/LoginForm";
 import LoginForm from "../components/LoginForm";
 const Login = () => {
   const { login } = useAuthCalls();
-
   return (
     <div className="h-screen flex items-center bg-gradient-to-r from-[#ABFB60] to-white">
       <section className="custom-box-shadow relative flex flex-wrap lg:items-center w-[50%] mx-auto rounded-[2rem] ">
@@ -31,9 +30,8 @@ const Login = () => {
               actions.resetForm();
               actions.setSubmitting(false);
             }}
-            component={(props)=> <LoginForm {...props}/>}
-          >
-          </Formik>
+            component={(props) => <LoginForm {...props} />}
+          ></Formik>
         </div>
       </section>
     </div>
