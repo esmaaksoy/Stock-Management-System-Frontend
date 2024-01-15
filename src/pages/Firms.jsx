@@ -12,16 +12,18 @@ const Firms = () => {
     setOpen(false);
   };
   const { firms, loading } = useSelector((state) => state.stock);
-  const { getStocks } = useStockCalls();
+  const { getStocks, searchStock } = useStockCalls();
   const [data, setData] = useState({
     name: "",
     phone: "",
     address: "",
     image: "",
   });
+  const [value, setValue]=useState("")
   useEffect(() => {
-    getStocks("firms");
-  }, []);
+    // getStocks("firms");
+    searchStock("firms", value)
+  }, [value]);
   return (
     <div className="dark:bg-gray-900 px-12 py-3">
       <div className="pb-4 flex flex-col justify-between gap-8 md:flex-row md:items-center">
@@ -36,6 +38,8 @@ const Firms = () => {
               id="Search"
               placeholder="Search for..."
               className="w-full rounded-md border border-gray-500 p-3 shadow-sm sm:text-sm"
+              value={value}
+              onChange={(e)=>setValue(e.target.value)}
             />
             <span className="absolute inset-y-0 end-0 grid w-10 place-content-center">
               <button type="button" className="text-gray-700 hover:text-black ">
@@ -77,6 +81,7 @@ const Firms = () => {
           </div>
         </div>
       </div>
+      {loading && <Loading />}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
         {firms?.map((firm) => (
          <FirmCard

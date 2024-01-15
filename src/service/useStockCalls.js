@@ -51,8 +51,20 @@ const useStockCalls = () => {
     }
   
   }
+  const searchStock = async(url="firms", value)=>{
+    dispatch(fetchStart());
+    try { 
+      const lowercaseValue = value.toLowerCase();
+      const { data } = await axiosWithToken.get(`/${url}/?search[name]=${lowercaseValue}`);
+      const apiData = data.data;
+      dispatch(getStockSuccess({ apiData, url })); 
+    } catch (error) {
+      dispatch(fetchFail());
+    }
+  }
 
-  return { getStocks, deleteStocks, postStock,putStock };
+
+  return { getStocks, deleteStocks, postStock,putStock,searchStock };
 };
 
 export default useStockCalls;
