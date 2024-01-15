@@ -4,6 +4,7 @@ import FirmForm from "../components/FirmForm";
 import { useSelector } from "react-redux";
 import useStockCalls from "../service/useStockCalls";
 import Loading from "./Loading";
+import { searchIcon } from "../helper/icons";
 const Firms = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -25,14 +26,14 @@ const Firms = () => {
     searchStock("firms", value)
   }, [value]);
   return (
-    <div className="dark:bg-gray-900 px-12 py-3">
+    <div className="dark:bg-gray-900 px-12 py-3 min-h-[100vh]">
       <div className="pb-4 flex flex-col justify-between gap-8 md:flex-row md:items-center">
         <div className="dark:text-white ">
           <p className="text-xl font-semibold"> Firm List</p>
           <p className="mt-1 font-normal">See information about all firm</p>
         </div>
         <div className="flex flex-col sm:flex-row w-full shrink-0 gap-2 md:w-max ">
-          <div className="relative flex-1">
+          <div className="relative flex-1">          
             <input
               type="text"
               id="Search"
@@ -40,24 +41,12 @@ const Firms = () => {
               className="w-full rounded-md border border-gray-500 p-3 shadow-sm sm:text-sm"
               value={value}
               onChange={(e)=>setValue(e.target.value)}
+              autoComplete="off"
             />
             <span className="absolute inset-y-0 end-0 grid w-10 place-content-center">
-              <button type="button" className="text-gray-700 hover:text-black ">
+              <button type="submit" className="text-gray-700 hover:text-black">
                 <span className="sr-only">Search</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="h-5 w-5 mr-4"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                  />
-                </svg>
+                {searchIcon}
               </button>
             </span>
           </div>

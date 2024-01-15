@@ -1,6 +1,7 @@
 import { Form } from "formik";
 import { object, string } from "yup";
 import { NavLink } from "react-router-dom";
+import { EmailIcon, PasswordIcon } from "../helper/icons";
 export const loginSchema = object({
   email: string()
     .email("Please enter a valid email.")
@@ -16,12 +17,12 @@ export const loginSchema = object({
       "Password must contain at least one special character (@$!%*?&)."
     ),
 });
-const inputData=[{label:"email", name:"email", type:"email", placeholder:"Enter email", d:"M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" },{label:"password", name:"password", type:"password", placeholder:"Enter password", d:"M15 12a3 3 0 11-6 0 3 3 0 016 0z" }]
+const inputData=[{label:"email", name:"email", type:"email", placeholder:"Enter email", icon:<EmailIcon/> },{label:"password", name:"password", type:"password", placeholder:"Enter password", icon:<PasswordIcon/> }]
 const LoginForm = ({ handleChange, values, touched, errors, handleBlur }) => {
   return (
     <Form>
       <div className="mx-auto mb-0 mt-8 max-w-md space-y-4">
-        {inputData.map(({label, name, type, placeholder, d })=>( 
+        {inputData.map(({label, name, type, placeholder, icon })=>( 
         <div>
           <label htmlFor={label} className="sr-only">
           {label}
@@ -39,20 +40,7 @@ const LoginForm = ({ handleChange, values, touched, errors, handleBlur }) => {
             />
 
             <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 text-gray-400"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d={d}
-                />
-              </svg>
+              {icon}     
             </span>
           </div>
           {touched.email && Boolean(errors.email) && (
