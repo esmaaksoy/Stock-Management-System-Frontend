@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import useStockCalls from "../service/useStockCalls";
+import ProductTable from "../components/ProductTable";
 const Products = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -41,7 +42,7 @@ const Products = () => {
           </div>
         </div>
       </div>
-      
+      <ProductTable/>
     </div>
   );
 };
