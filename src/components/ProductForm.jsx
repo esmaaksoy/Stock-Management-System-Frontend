@@ -23,7 +23,7 @@ const ProductForm = ({ open, handleClose, data, setData }) => {
         <select
           name="categoryId"
           id="categoryId"
-          className="w-full rounded-lg border border-gray-300 p-4 pe-12 text-sm shadow-sm mb-3 "
+          className="w-full rounded-lg border border-gray-300 p-4 pe-12 text-sm shadow-sm mb-3"
           value={data.categoryId}
           onChange={handleChange}
         >

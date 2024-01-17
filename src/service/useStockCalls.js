@@ -27,44 +27,71 @@ const useStockCalls = () => {
       toastErrorNotify("Data could not be deleted.");
     }
   };
-  const postStock= async(url="firms", info)=>{
-    dispatch(fetchStart())
+  const postStock = async (url = "firms", info) => {
+    dispatch(fetchStart());
     try {
-         await axiosWithToken.post(`${url}`,info) 
-        getStocks(url)
-        toastSuccessNotify("Data has been added.")
+      await axiosWithToken.post(`${url}`, info);
+      getStocks(url);
+      toastSuccessNotify("Data has been added.");
     } catch (error) {
-        dispatch(fetchFail())
-        toastErrorNotify("Data could not be added.")
+      dispatch(fetchFail());
+      toastErrorNotify("Data could not be added.");
     }
-
-  }
-  const putStock = async(url="firms", info)=>{
+  };
+  const putStock = async (url = "firms", info) => {
     dispatch(fetchStart());
     try {
       await axiosWithToken.put(`/${url}/${info._id}/`, info);
       toastSuccessNotify("Data has been updated.");
-      getStocks(url)
+      getStocks(url);
     } catch (error) {
       dispatch(fetchFail());
       toastErrorNotify("Data could not be updated.");
     }
-  
-  }
-  const searchStock = async(url="firms", value)=>{
+  };
+  const searchStock = async (url = "firms", value) => {
     dispatch(fetchStart());
-    try { 
+    try {
       const lowercaseValue = value.toLowerCase();
-      const { data } = await axiosWithToken.get(`/${url}/?search[name]=${lowercaseValue}`);
+      const { data } = await axiosWithToken.get(
+        `/${url}/?search[name]=${lowercaseValue}`
+      );
       const apiData = data.data;
-      dispatch(getStockSuccess({ apiData, url })); 
+      dispatch(getStockSuccess({ apiData, url }));
     } catch (error) {
       dispatch(fetchFail());
     }
-  }
+  };
+  const getProPurBranFirm = async () => {
+    dispatch(fetchStart());
+    try {
+      const [products, purchases, brands, firms] = await Promise.all([
+        axiosWithToken("/products/"),
+        axiosWithToken("/purchases/"),
+        axiosWithToken("/brands/"),
+        axiosWithToken("/firms/"),
+      ]);
+      dispatch(
+        getProPurBranFirm([
+          products?.data?.data,
+          purchases?.data?.data,
+          brands?.data?.data,
+          firms?.data?.data,
+        ])
+      );
+    } catch (error) {
+      dispatch(fetchFail());
+    }
+  };
 
-
-  return { getStocks, deleteStocks, postStock,putStock,searchStock };
+  return {
+    getStocks,
+    deleteStocks,
+    postStock,
+    putStock,
+    searchStock,
+    getProPurBranFirm,
+  };
 };
 
 export default useStockCalls;

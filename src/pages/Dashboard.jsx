@@ -2,8 +2,16 @@ import RecentReport from "../components/RecentReport";
 import Stats from "../components/Stats";
 import LineChart from "../components/LineChart";
 import BarChart from "../components/BarChart";
+import useStockCalls from "../service/useStockCalls";
+import { useEffect } from "react";
 
 const Dashboard = () => {
+  const {getStocks} = useStockCalls()
+  useEffect(() => {
+ getStocks("sales")
+ getStocks("purchases")
+  }, [])
+  
   return(
     <div className="p-4 dark:bg-gray-900 min-h-[100vh]">
     <Stats />

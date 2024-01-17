@@ -6,6 +6,7 @@ import {
   } from "@material-tailwind/react";
   import Chart from "react-apexcharts";
   import { Square3Stack3DIcon } from "@heroicons/react/24/outline";
+import { useSelector } from "react-redux";
 const LineChart = () => {
     const chartConfig1 = {
         type: "line",
@@ -95,6 +96,7 @@ const LineChart = () => {
           },
         },
       };
+      const {sales, purchases} = useSelector((state)=>state.stock)
   return (
     <Card className="shadow-lg flex-1 ">
     <CardHeader
@@ -108,7 +110,7 @@ const LineChart = () => {
       </div>
       <div>
         <Typography variant="h6" color="blue-gray">
-          Line Chart
+       Total Sales
         </Typography>
         <Typography
           variant="small"
