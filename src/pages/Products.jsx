@@ -1,22 +1,29 @@
 import { useEffect, useState } from "react";
 import useStockCalls from "../service/useStockCalls";
 import ProductTable from "../components/ProductTable";
+import { useSelector } from "react-redux";
+import ProductForm from "../components/ProductForm";
 const Products = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
-    setData({ name: "", phone: "", address: "", image: "" });
+    setData({  categoryId: "", brandId: "", name: ""  });
     setOpen(false);
   };
   const [data, setData] = useState({
-    name: "",
-    phone: "",
-    address: "",
-    image: "",
+    categoryId: "", brandId: "", name: "" 
   });
+  const { getStocks } = useStockCalls();
+
+  useEffect(() => {
+    getStocks("products");
+    getStocks("categories");
+    getStocks("brands");
+  }, []);
+
   return (
     <div className="dark:bg-gray-900 px-12 py-3 min-h-[100vh]">
-      <div className="pb-4 flex flex-col justify-between gap-8 md:flex-row md:items-center">
+      <div className="pb-10 flex flex-col justify-between gap-8 md:flex-row md:items-center">
         <div className="dark:text-white ">
           <p className="text-xl font-semibold">Products </p>
           <p className="mt-1 font-normal">See information about all product</p>
@@ -32,17 +39,17 @@ const Products = () => {
                 Add Product
               </span>
             </button>
-            {/* <FirmForm
+            <ProductForm
               open={open}
               handleOpen={handleOpen}
               handleClose={handleClose}
               data={data}
               setData={setData}
-            /> */}
+            />
           </div>
         </div>
       </div>
-      <ProductTable/>
+          <ProductTable />
     </div>
   );
 };

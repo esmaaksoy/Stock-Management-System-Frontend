@@ -13,17 +13,16 @@ const Firms = () => {
     setOpen(false);
   };
   const { firms, loading } = useSelector((state) => state.stock);
-  const { getStocks, searchStock } = useStockCalls();
+  const { searchStock } = useStockCalls();
   const [data, setData] = useState({
     name: "",
     phone: "",
     address: "",
     image: "",
   });
-  const [value, setValue]=useState("")
+  const [value, setValue] = useState("");
   useEffect(() => {
-    // getStocks("firms");
-    searchStock("firms", value)
+    searchStock("firms", value);
   }, [value]);
   return (
     <div className="dark:bg-gray-900 px-12 py-3 min-h-[100vh]">
@@ -33,14 +32,14 @@ const Firms = () => {
           <p className="mt-1 font-normal">See information about all firm</p>
         </div>
         <div className="flex flex-col sm:flex-row w-full shrink-0 gap-2 md:w-max ">
-          <div className="relative flex-1">          
+          <div className="relative flex-1">
             <input
               type="text"
               id="Search"
               placeholder="Search for..."
               className="w-full rounded-md border border-gray-500 p-3 shadow-sm sm:text-sm"
               value={value}
-              onChange={(e)=>setValue(e.target.value)}
+              onChange={(e) => setValue(e.target.value)}
               autoComplete="off"
             />
             <span className="absolute inset-y-0 end-0 grid w-10 place-content-center">
@@ -73,13 +72,12 @@ const Firms = () => {
       {loading && <Loading />}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
         {firms?.map((firm) => (
-         <FirmCard
+          <FirmCard
             key={firm._id}
             firm={firm}
             setData={setData}
             handleOpen={handleOpen}
           />
-         
         ))}
       </div>
     </div>

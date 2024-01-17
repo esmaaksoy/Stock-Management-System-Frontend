@@ -1,5 +1,4 @@
 import { Dialog } from "@material-tailwind/react";
-import { useState } from "react";
 import useStockCalls from "../service/useStockCalls";
 const FirmForm = ({ open,handleClose, data, setData }) => {
   const input = [

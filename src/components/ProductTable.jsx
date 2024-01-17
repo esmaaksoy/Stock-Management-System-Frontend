@@ -1,56 +1,67 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import { DataGrid } from '@mui/x-data-grid';
-
-const columns = [
-  { field: 'id', headerName: 'ID', width: 90 },
-  {
-    field: 'firstName',
-    headerName: 'First name',
-    width: 150,
-    editable: true,
-  },
-  {
-    field: 'lastName',
-    headerName: 'Last name',
-    width: 150,
-    editable: true,
-  },
-  {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
-    width: 110,
-    editable: true,
-  },
-  {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    valueGetter: (params) =>
-      `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-  },
-];
-
-const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 14 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 31 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 31 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 11 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-];
-
+import Box from "@mui/material/Box";
+import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
+import { useSelector } from "react-redux";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import useStockCalls from "../service/useStockCalls";
 const ProductTable = () => {
+  const { products } = useSelector((state) => state.stock);
+  const { deleteStocks } = useStockCalls();
+  const columns = [
+    {
+      field: "_id",
+      headerName: "#",
+      flex: 1.4,
+      minWidth: "150px",
+
+      sortable: false,
+    },
+    {
+      field: "categoryId",
+      headerName: "Category",
+      flex: 1,
+
+      valueGetter: (props) => {
+        return props.row?.categoryId?.name;
+      },
+    },
+    {
+      field: "brandId",
+      headerName: "Brand",
+      flex: 1,
+      valueGetter: (props) => props.row?.brandId?.name,
+    },
+    {
+      field: "name",
+      headerName: "Name",
+      flex: 1,
+    },
+    {
+      field: "quantity",
+      headerName: "Stock",
+      type: "number",
+      flex: 1,
+      headerAlign: "left",
+      align: "left",
+    },
+    {
+      field: "actions",
+      type: "actions",
+      headerName: "Actions",
+      getActions: (props) => [
+        <GridActionsCellItem
+          icon={<DeleteForeverIcon />}
+          onClick={() => deleteStocks("products", props.id)}
+          label="Delete"
+        />,
+      ],
+    },
+  ];
+  const getRowId = (row) => row._id;
   return (
-    <div className='h-[400px] w-[100%] dark:bg-white rounded-lg' >
+    <div className="h-[400px] w-[100%] dark:bg-white rounded-lg shadow-2xl">
       <DataGrid
-        rows={rows}
+        autoHeight
+        rows={products}
         columns={columns}
         initialState={{
           pagination: {
@@ -62,9 +73,11 @@ const ProductTable = () => {
         pageSizeOptions={[5]}
         checkboxSelection
         disableRowSelectionOnClick
+        getRowId={getRowId}
+        slots={{ toolbar: GridToolbar }}
       />
     </div>
   );
-}
+};
 
-export default ProductTable
+export default ProductTable;
