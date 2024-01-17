@@ -8,8 +8,8 @@ import Sales from "../pages/Sales"
 import Brands from "../pages/Brands"
 import Firms from "../pages/Firms"
 import Products from "../pages/Products"
-import NotFound from "../pages/NotFound";
 import ScrollToTop from "../pages/ScroolToTop";
+import { NotFound } from "../components/DataMessage";
 
 const AppRouter = () => {
   return (
@@ -26,7 +26,7 @@ const AppRouter = () => {
           <Route path="brands" element={<Brands />} />
           <Route path="products" element={<Products />} />
         </Route>
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<NotFound/>} />
       </Routes>
     </>
   );
