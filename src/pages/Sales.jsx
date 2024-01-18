@@ -3,7 +3,7 @@ import useStockCalls from "../service/useStockCalls";
 import SaleTable from "../components/SaleTable";
 import { useSelector } from "react-redux";
 import SaleForm from "../components/SaleForm";
-import { NotFound, TableSkeleton } from "../components/DataMessage";
+import { CardSkeloton, LoadingMsg, NotFound, TableSkeleton } from "../components/DataMessage";
 import { NoData } from "../components/DataMessage";
 const Sales = () => {
   const [open, setOpen] = useState(false);
@@ -24,9 +24,7 @@ const Sales = () => {
   return (
     <div className="dark:bg-gray-900 px-12 py-3 min-h-[100vh]">
       {error && <NotFound />}
-      {!error && !loading && !sales.length && (<NoData/>) }
-      {!loading && !error && sales.length > 0 &&  (
-        <>
+      {loading && <LoadingMsg/>}
           <div className="pb-10 flex flex-col justify-between gap-8 md:flex-row md:items-center">
             <div className="dark:text-white ">
               <p className="text-xl font-semibold">Sales </p>
@@ -54,10 +52,9 @@ const Sales = () => {
                 />
               </div>
             </div>
-          </div>          
-          <SaleTable handleOpen={handleOpen} setData={setData}/>
-        </>
-      )}
+          </div>  
+          {!loading && !sales.length && <NoData/>} 
+          {!loading && sales?.length > 0 && (<SaleTable handleOpen={handleOpen} setData={setData}/> ) }       
     </div> 
   );
 };

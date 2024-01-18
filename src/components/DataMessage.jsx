@@ -73,3 +73,13 @@ export const CardSkeloton = () => {
     </div>
   );
 };
+export const LoadingMsg = () => {
+  return (
+    <div className="grid h-screen place-content-center bg-white px-4 min-h-[100vh]">
+      <h1 className="uppercase tracking-widest text-gray-600">
+       Loading... 
+      </h1>
+      <h5 className="text-gray-500">Please wait...</h5>
+    </div>
+  );
+};
