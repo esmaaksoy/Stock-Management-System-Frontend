@@ -24,7 +24,7 @@ const FirmForm = ({ open,handleClose, data, setData }) => {
     <Dialog
       open={open}
       handler={handleClose}
-      className="rounded-lg p-4 sm:p-6 lg:p-8  dark:bg-[#00000084] bg-[#abfb605b]"
+      className="rounded-lg p-4 sm:p-6 lg:p-8  dark:bg-[#00000084] bg-white"
     >
       <form onSubmit={handleSubmit} >
         {input.map(({ type, placeholder, name }) => (

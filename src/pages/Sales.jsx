@@ -1,36 +1,31 @@
 import { useEffect, useState } from "react";
 import useStockCalls from "../service/useStockCalls";
-import ProductTable from "../components/ProductTable";
+import SaleTable from "../components/SaleTable";
 import { useSelector } from "react-redux";
-import ProductForm from "../components/ProductForm";
+import SaleForm from "../components/SaleForm";
 import { NotFound, TableSkeleton } from "../components/DataMessage";
 import { NoData } from "../components/DataMessage";
 const Sales = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
-    setData({ categoryId: "", brandId: "", name: "" });
+    setData({ brandId: "", productId: "", quantity: "", price: "" });
     setOpen(false);
   };
-  const [data, setData] = useState({
-    categoryId: "",
-    brandId: "",
-    name: "",
-  });
+  const [data, setData] = useState({ brandId: "", productId: "", quantity: "", price: "" });
   const { getStocks } = useStockCalls();
-  const { products, error, loading } = useSelector((state) => state.stock);
+  const { sales, error, loading } = useSelector((state) => state.stock);
   useEffect(() => {
     getStocks("products");
-    getStocks("categories");
+    getStocks("sales");
     getStocks("brands");
   }, []);
 
   return (
     <div className="dark:bg-gray-900 px-12 py-3 min-h-[100vh]">
       {error && <NotFound />}
- 
-      {!error && !loading && !products.length && (<NoData/>) }
-      {!loading && !error && products.length > 0 &&  (
+      {!error && !loading && !sales.length && (<NoData/>) }
+      {!loading && !error && sales.length > 0 &&  (
         <>
           <div className="pb-10 flex flex-col justify-between gap-8 md:flex-row md:items-center">
             <div className="dark:text-white ">
@@ -50,7 +45,7 @@ const Sales = () => {
                     Add Sale
                   </span>
                 </button>
-                <ProductForm
+                <SaleForm
                   open={open}
                   handleOpen={handleOpen}
                   handleClose={handleClose}
@@ -61,7 +56,7 @@ const Sales = () => {
             </div>
           </div>
           
-          <ProductTable />
+          <SaleTable />
         </>
       )}
     </div> 

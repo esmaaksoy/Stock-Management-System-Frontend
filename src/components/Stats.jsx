@@ -13,7 +13,7 @@ const Stats = () => {
     { title: "Total Sales", amount: `$${totalSales}`, icon: <DolarIcon /> },
     { title: "Purchases", amount: `$${totalPurchases}`, icon: <PurchasesIcon /> },
     { title: "New Members", amount: "1256", icon: <UsersIcon /> },
-    { title: "Total CheckLists", amount: "1256", icon: <CheckIcon /> },
+    { title: "Total CheckLists", amount: "1506", icon: <CheckIcon /> },
   ];
   return (
     <section className="bg-white dark:bg-gray-900">

@@ -17,7 +17,7 @@ const ProductForm = ({ open, handleClose, data, setData }) => {
     <Dialog
       open={open}
       handler={handleClose}
-      className="rounded-lg p-4 sm:p-6 lg:p-8  dark:bg-[#00000084] bg-white"
+      className="rounded-lg p-4 sm:p-6 lg:p-8  dark:bg-[#00000084] bg-[#abfb605b]"
     >
       <form onSubmit={handleSubmit}>
         <select
@@ -57,7 +57,15 @@ const ProductForm = ({ open, handleClose, data, setData }) => {
           onChange={handleChange}
           autocomplete="off"
         />
-
+   <input
+          name="quantity"
+          type="number"
+          placeholder="Quantity"
+          className="w-full rounded-lg border border-gray-300 p-4 text-sm shadow-sm mb-3"
+          value={data.quantity}
+          onChange={handleChange}
+          autocomplete="off"
+        />
         <button
           onClick={handleClose}
           type="submit"

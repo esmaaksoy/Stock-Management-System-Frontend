@@ -2,7 +2,8 @@ import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
 import { useSelector } from "react-redux";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import useStockCalls from "../service/useStockCalls";
-const ProductTable = () => {
+import EditIcon from "@mui/icons-material/Edit"
+const SaleTable = () => {
   const { products } = useSelector((state) => state.stock);
   const { deleteStocks } = useStockCalls();
   const columns = [
@@ -48,10 +49,15 @@ const ProductTable = () => {
       headerName: "Actions",
       getActions: (props) => [
         <GridActionsCellItem
-          icon={<DeleteForeverIcon />}
-          onClick={() => deleteStocks("products", props.id)}
-          label="Delete"
+        icon={<EditIcon />}
+        //   onClick={() => deleteStocks("products", props.id)}
+          label="edit"
         />,
+        <GridActionsCellItem
+        icon={<DeleteForeverIcon />}
+        onClick={() => deleteStocks("products", props.id)}
+        label="Delete"
+      />,
       ],
     },
   ];
@@ -79,4 +85,4 @@ const ProductTable = () => {
   );
 };
 
-export default ProductTable;
+export default SaleTable;
