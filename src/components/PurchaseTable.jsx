@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import useStockCalls from "../service/useStockCalls";
 import EditIcon from "@mui/icons-material/Edit";
-const SaleTable = ({handleOpen, setData}) => {
+const PurchaseTable = ({handleOpen, setData}) => {
   const { sales } = useSelector((state) => state.stock);
   const { deleteStocks } = useStockCalls();
   const columns = [
@@ -91,4 +91,5 @@ const SaleTable = ({handleOpen, setData}) => {
   );
 };
 
-export default SaleTable;
+export default PurchaseTable;
+

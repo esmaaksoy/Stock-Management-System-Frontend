@@ -56,7 +56,7 @@ const Sales = () => {
             </div>
           </div>
           
-          <SaleTable />
+          <SaleTable handleOpen={handleOpen} setData={setData}/>
         </>
       )}
     </div> 
