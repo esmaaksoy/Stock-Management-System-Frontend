@@ -15,7 +15,6 @@ const useAuthCalls = () => {
   const {axiosWithToken, axiosPublic} = useAxios()
   const login = async (userInfo) => {
     dispatch(fetchStart());
-  console.log("start")
     try {
       const {data } = await axiosPublic.post("/auth/login/",userInfo);
       dispatch(loginSuccess(data));
@@ -24,7 +23,6 @@ const useAuthCalls = () => {
     } catch (error) {
       dispatch(fetchFail());
       toastErrorNotify("Login attempt failed.");
-      console.log(error)
     }
   };
   const register = async (userInfo) => {

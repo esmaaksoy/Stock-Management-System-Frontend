@@ -3,9 +3,8 @@ import FirmCard from "../components/FirmCard";
 import FirmForm from "../components/FirmForm";
 import { useSelector } from "react-redux";
 import useStockCalls from "../service/useStockCalls";
-import Loading from "./Loading";
 import { searchIcon } from "../helper/icons";
-import { NotFound } from "../components/DataMessage";
+import { CardSkeloton, NotFound } from "../components/DataMessage";
 
 const Firms = () => {
   const [open, setOpen] = useState(false);
@@ -77,7 +76,7 @@ const Firms = () => {
               </div>
             </div>
           </div>
-          {loading && <Loading />}
+          {loading && <CardSkeloton/>}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
             {firms?.map((firm) => (
               <FirmCard

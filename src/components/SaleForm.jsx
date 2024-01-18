@@ -23,16 +23,23 @@ const SaleForm = ({ open, handleClose, data, setData }) => {
       postStock("sales", data);
     }
     handleClose();
-    console.log(data);
   };
-  console.log(data);
-  const mybrands = [
+
+  const myBrand = [
     {
       _id: "",
       name: "Add New Brand",
       onClick: () => navigate("/stock/brands/"),
     },
     ...brands,
+  ];
+  const myProduct = [
+    {
+      _id: "",
+      name: "Add New Product",
+      onClick: () => navigate("/stock/products"),
+    },
+    ...products,
   ];
   return (
     <Dialog
@@ -48,7 +55,7 @@ const SaleForm = ({ open, handleClose, data, setData }) => {
           size="lg"
           onChange={(value) => handleChange(value, "brandId", "select")}
         >
-          {mybrands.map((item) => (
+          {myBrand.map((item) => (
             <Option value={item._id} key={item._id} onClick={item.onClick}>
               {item.name}
             </Option>
@@ -60,11 +67,8 @@ const SaleForm = ({ open, handleClose, data, setData }) => {
           value={data?.productId?._id || data?.productId}
           onChange={(value) => handleChange(value, "productId", "select")}
         >
-          {/* <Option onClick={() => navigate("/stock/products")}>
-            Add New Product
-          </Option> */}
-          {products.map((item) => (
-            <Option value={item._id} key={item._id}>
+          {myProduct.map((item) => (
+            <Option value={item._id} key={item._id}  onClick={item.onClick}>
               {item.name}
             </Option>
           ))}

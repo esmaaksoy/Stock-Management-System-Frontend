@@ -1,10 +1,14 @@
 import { Dialog } from "@material-tailwind/react";
 import useStockCalls from "../service/useStockCalls";
 import { useSelector } from "react-redux";
-import { Select, Option } from "@material-tailwind/react";
+import { Select, Option, Input } from "@material-tailwind/react";
 const ProductForm = ({ open, handleClose, data, setData }) => {
-  const handleChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
+  const handleChange = (e, fieldName, fieldType) => {
+    if (fieldType === "select") {
+      setData({ ...data, [fieldName]: e });
+    } else {
+      setData({ ...data, [fieldName]: e.target.value });
+    }
   };
   const { postStock } = useStockCalls();
   const { categories, brands } = useSelector((state) => state.stock);
@@ -19,53 +23,51 @@ const ProductForm = ({ open, handleClose, data, setData }) => {
       handler={handleClose}
       className="rounded-lg p-4 sm:p-6 lg:p-8  dark:bg-[#00000084] bg-white"
     >
-      <form onSubmit={handleSubmit}>
-        <select
+      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+        <Select
+          label="Categories"
           name="categoryId"
-          id="categoryId"
-          className="w-full rounded-lg border border-gray-300 p-4 pe-12 text-sm shadow-sm mb-3"
           value={data.categoryId}
-          onChange={handleChange}
+          size="lg"
+          onChange={(value) => handleChange(value, "categoryId", "select")}
         >
-          <option value="">Categories</option>
-          {categories.map((item) => (
-            <option value={item._id} key={item._id}>
+          {categories?.map((item) => (
+            <Option value={item._id} key={item._id}>
               {item.name}
-            </option>
+            </Option>
           ))}
-        </select>
-        <select
+        </Select>
+        <Select
+          label="Brand"
           name="brandId"
-          id="brandId"
-          className="w-full rounded-lg border border-gray-300 p-4 pe-12 text-sm shadow-sm mb-3 "
           value={data.brandId}
-          onChange={handleChange}
+          size="lg"
+          onChange={(value) => handleChange(value, "brandId", "select")}
         >
-          <option value="">Brands</option>
-          {brands.map((item) => (
-            <option key={item._id} value={item._id}>
+          {brands?.map((item) => (
+            <Option value={item._id} key={item._id}>
               {item.name}
-            </option>
+            </Option>
           ))}
-        </select>
-        <input
+        </Select>
+        <Input
+          size="lg"
           name="name"
           type="text"
-          placeholder="Product Name"
-          className="w-full rounded-lg border border-gray-300 p-4 text-sm shadow-sm mb-3"
+          label="Product Name"
           value={data.name}
-          onChange={handleChange}
-          autocomplete="off"
+          onChange={(e) => handleChange(e, "name", "input")}
+          autoComplete="off"
         />
-   <input
-          name="quantity"
+          <Input
+          label="Quantity"
+          size="lg"
           type="number"
-          placeholder="Quantity"
-          className="w-full rounded-lg border border-gray-300 p-4 text-sm shadow-sm mb-3"
+          name="quantity"
           value={data.quantity}
-          onChange={handleChange}
-          autocomplete="off"
-        />
+          onChange={(e) => handleChange(e, "quantity", "input")}
+          autoComplete="off"
+        />  
         <button
           onClick={handleClose}
           type="submit"

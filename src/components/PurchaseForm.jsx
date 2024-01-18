@@ -7,15 +7,14 @@ import React from "react";
 const PurchaseForm = ({ open, handleClose, data, setData }) => {
   const navigate = useNavigate();
   const handleChange = (e, fieldName, fieldType) => {
-    if(fieldType === "select"){
-        setData({ ...data, [fieldName]: e }); 
-    }else{
-      setData({ ...data, [fieldName]: e.target.value }); 
+    if (fieldType === "select") {
+      setData({ ...data, [fieldName]: e });
+    } else {
+      setData({ ...data, [fieldName]: e.target.value });
     }
   };
   const { postStock, putStock } = useStockCalls();
-  const { firms, products, brands } = useSelector((state) => state.stock)
-  console.log(firms)
+  const { firms, products, brands } = useSelector((state) => state.stock);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (data._id) {
@@ -24,9 +23,29 @@ const PurchaseForm = ({ open, handleClose, data, setData }) => {
       postStock("purchases", data);
     }
     handleClose();
-    console.log(data)
   };
-  console.log(data)
+  const myFirm = [
+    {
+      _id: "",
+      name: "Add New Firm",
+      onClick: () => navigate("/stock/firms"),
+    },
+    ...firms,
+  ];
+  const myProduct = [ {
+    _id: "",
+    name: "Add New Product",
+    onClick: () => navigate("/stock/products"),
+  },
+  ...products,]
+  const myBrand = [
+    {
+      _id: "",
+      name: "Add New Brand",
+      onClick: () => navigate("/stock/brands/"),
+    },
+    ...brands,
+  ];
   return (
     <Dialog
       open={open}
@@ -39,51 +58,35 @@ const PurchaseForm = ({ open, handleClose, data, setData }) => {
           name="firmId"
           value={data?.firmId?._id || data?.firmId}
           size="lg"
-          onChange={(value)=>handleChange(value,"firmId", "select")}
-          // selected={(element) =>
-          //   element &&
-          //   React.cloneElement(element, {
-          //     disabled: true,
-          //   })
-          // }
+          onChange={(value) => handleChange(value, "firmId", "select")}
         >
-          {/* <Option onClick={() =>  navigate("/stock/firms")}>
-            Add New Firm
-          </Option> */}
-          {firms?.map((item) => (
-            <Option value={item._id} key={item._id}>
+          {myFirm?.map((item) => (
+            <Option value={item._id} key={item._id} onClick={item.onClick}>
               {item.name}
             </Option>
           ))}
         </Select>
         <Select
           label="Product"
-          size="lg"        
+          size="lg"
           value={data?.productId?._id || data?.productId}
-          onChange={(value)=>handleChange(value,"productId","select")}
-        >
-          {/* <Option onClick={() => navigate("/stock/products")}>
-            Add New Product
-          </Option> */}
-          {products.map((item) => (
-            <Option value={item._id} key={item._id}>
+          onChange={(value) => handleChange(value, "productId", "select")}
+        >        
+          {myProduct.map((item) => (
+            <Option value={item._id} key={item._id} onClick={item.onClick}>
               {item.name}
             </Option>
           ))}
         </Select>
         <Select
-         label="Brand"
-         name="brandId"
-          size="lg"        
+          label="Brand"
+          name="brandId"
+          size="lg"
           value={data?.brandId?._id || data?.brandId}
-          onChange={(value)=>handleChange(value,"brandId","select")}
-         
+          onChange={(value) => handleChange(value, "brandId", "select")}
         >
-          {/* <Option onClick={() => navigate("/stock/brands")}>
-            Add New Brand
-          </Option> */}
-          {brands.map((item) => (
-            <Option value={item._id} key={item._id}>
+          {myBrand.map((item) => (
+            <Option value={item._id} key={item._id} onClick={item.onClick}>
               {item.name}
             </Option>
           ))}
@@ -94,7 +97,7 @@ const PurchaseForm = ({ open, handleClose, data, setData }) => {
           type="number"
           name="quantity"
           value={data?.quantity || ""}
-          onChange={(e)=>handleChange(e,"quantity","input")}
+          onChange={(e) => handleChange(e, "quantity", "input")}
           autoComplete="off"
         />
         <Input
@@ -103,7 +106,7 @@ const PurchaseForm = ({ open, handleClose, data, setData }) => {
           type="number"
           name="price"
           value={data?.price || ""}
-          onChange={(e)=>handleChange(e,"price","input")}
+          onChange={(e) => handleChange(e, "price", "input")}
           autoComplete="off"
         />
         <button

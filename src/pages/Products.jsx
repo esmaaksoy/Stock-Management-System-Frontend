@@ -57,7 +57,7 @@ const Products = () => {
               </div>
             </div>
           </div>
-          {!error && !products.length  ? (<NoData/>) :  <ProductTable />}
+          <ProductTable />
     </div> 
   );
 };
