@@ -71,8 +71,8 @@ const RegisterForm = ({ values,
             <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-2">{errors[name]}</span>
           )}
         </div>))}
-    <div className="flex items-center justify-between">
-      <p className="text-sm text-gray-500">
+    <div className="flex items-center justify-between flex-wrap">
+      <p className="text-sm text-gray-500 mb-3">
         Do you have an account?
         <NavLink to={"/"} className="underline" href="">
           Sign In
@@ -80,7 +80,7 @@ const RegisterForm = ({ values,
       </p>
       <button
         type="submit"
-        className="inline-block rounded-lg bg-gray-500  px-5 py-3 text-sm font-medium text-white"
+        className="inline-block rounded-lg bg-gray-500  px-5 py-3 text-sm font-medium text-white mx-auto"
       >
         Sign Up
       </button>
