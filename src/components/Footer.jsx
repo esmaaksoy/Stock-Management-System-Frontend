@@ -6,8 +6,8 @@ const Footer = () => {
         &copy; 2024 Stock Management System
       </p>
       <ul className="flex flex-wrap items-center gap-y-2 gap-x-8 ">
-     {list.map((item)=>(
-     <li>
+     {list.map((item,index)=>(
+     <li key={index}  >
           <p className="font-normal transition-colors hover:text-gray-600 focus:text-gray-600 dark:text-white"
           >
           {item}

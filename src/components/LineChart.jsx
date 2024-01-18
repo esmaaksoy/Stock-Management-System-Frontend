@@ -8,10 +8,9 @@ import {
   import { Square3Stack3DIcon } from "@heroicons/react/24/outline";
 import { useSelector } from "react-redux";
 const LineChart = () => {
-  const { sales, purchases } = useSelector((state) => state.stock)
+  const { sales } = useSelector((state) => state.stock)
   const totalSales = sales?.map((item)=>(item.amount)) || []
   const date = sales?.map((item)=>new Date(item.createdAt).toLocaleDateString("tr-TR"))
-  console.log(date)
     const chartConfig1 = {
         type: "line",
         height: 240,
@@ -110,8 +109,7 @@ const LineChart = () => {
           color="gray"
           className="max-w-sm font-normal"
         >
-          Visualize your data in a simple way using the
-          @material-tailwind/react chart plugin.
+         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, ratione et tempora ipsa repellat est.
         </Typography>
       </div>
     </CardHeader>

@@ -7,10 +7,10 @@ import React from "react";
 const SaleForm = ({ open, handleClose, data, setData }) => {
   const navigate = useNavigate();
   const handleChange = (e, fieldName, fieldType) => {
-    if(fieldType === "select"){
-        setData({ ...data, [fieldName]: e }); 
-    }else{
-      setData({ ...data, [fieldName]: e.target.value }); 
+    if (fieldType === "select") {
+      setData({ ...data, [fieldName]: e });
+    } else {
+      setData({ ...data, [fieldName]: e.target.value });
     }
   };
   const { postStock, putStock } = useStockCalls();
@@ -23,9 +23,17 @@ const SaleForm = ({ open, handleClose, data, setData }) => {
       postStock("sales", data);
     }
     handleClose();
-    console.log(data)
+    console.log(data);
   };
-  console.log(data)
+  console.log(data);
+  const mybrands = [
+    {
+      _id: "",
+      name: "Add New Brand",
+      onClick: () => navigate("/stock/brands/"),
+    },
+    ...brands,
+  ];
   return (
     <Dialog
       open={open}
@@ -35,32 +43,22 @@ const SaleForm = ({ open, handleClose, data, setData }) => {
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
         <Select
           label="Brand"
-         name="brandId"
+          name="brandId"
           value={data?.brandId?._id || data?.brandId}
           size="lg"
-          onChange={(value)=>handleChange(value,"brandId", "select")}
-          // selected={(element) =>
-          //   element &&
-          //   React.cloneElement(element, {
-          //     disabled: true,
-          //   })
-          // }
+          onChange={(value) => handleChange(value, "brandId", "select")}
         >
-          {/* <Option onClick={() => navigate("/stock/brands/")}>
-            Add New Brand
-          </Option> */}
-          {brands.map((item) => (
-            <Option value={item._id} key={item._id}>
+          {mybrands.map((item) => (
+            <Option value={item._id} key={item._id} onClick={item.onClick}>
               {item.name}
             </Option>
           ))}
         </Select>
         <Select
           label="Product"
-          size="lg"        
+          size="lg"
           value={data?.productId?._id || data?.productId}
-          onChange={(value)=>handleChange(value,"productId","select")}
-         
+          onChange={(value) => handleChange(value, "productId", "select")}
         >
           {/* <Option onClick={() => navigate("/stock/products")}>
             Add New Product
@@ -77,7 +75,7 @@ const SaleForm = ({ open, handleClose, data, setData }) => {
           type="number"
           name="quantity"
           value={data?.quantity || ""}
-          onChange={(e)=>handleChange(e,"quantity","input")}
+          onChange={(e) => handleChange(e, "quantity", "input")}
           autoComplete="off"
         />
         <Input
@@ -86,7 +84,7 @@ const SaleForm = ({ open, handleClose, data, setData }) => {
           type="number"
           name="price"
           value={data?.price || ""}
-          onChange={(e)=>handleChange(e,"price","input")}
+          onChange={(e) => handleChange(e, "price", "input")}
           autoComplete="off"
         />
         <button
