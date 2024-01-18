@@ -27,7 +27,7 @@ const Purchases = () => {
     price: "",
   });
   const { getStocks } = useStockCalls();
-  const { sales, error, loading } = useSelector((state) => state.stock);
+  const { purchases, error, loading } = useSelector((state) => state.stock);
   useEffect(() => {
      getStocks("products")
     getStocks("purchases")
@@ -38,8 +38,8 @@ const Purchases = () => {
   return (
     <div className="dark:bg-gray-900 px-12 py-3 min-h-[100vh]">
       {error && <NotFound />}
-      {!error && !loading && !sales.length && <NoData />}
-      {!loading && !error && sales.length > 0 && (
+      {!error && !loading && !purchases.length && <NoData />}
+      {!loading && !error && purchases.length > 0 && (
         <>
           <div className="pb-10 flex flex-col justify-between gap-8 md:flex-row md:items-center">
             <div className="dark:text-white ">

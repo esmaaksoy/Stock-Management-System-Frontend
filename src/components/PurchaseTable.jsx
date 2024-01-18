@@ -4,7 +4,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import useStockCalls from "../service/useStockCalls";
 import EditIcon from "@mui/icons-material/Edit";
 const PurchaseTable = ({handleOpen, setData}) => {
-  const { sales } = useSelector((state) => state.stock);
+    const { purchases } = useSelector((state) => state.stock)
   const { deleteStocks } = useStockCalls();
   const columns = [
     {
@@ -13,6 +13,12 @@ const PurchaseTable = ({handleOpen, setData}) => {
       flex: 1,
       renderCell: ({ row }) => new Date(row.createdAt).toLocaleDateString("tr-TR"),
     },
+    {
+        field: "firmId",
+        headerName: "Firm",
+        flex: 1,
+        renderCell: ({ row }) => row?.firmId?.name,
+      },
     {
       field: "brandId",
       headerName: "Brand",
@@ -45,7 +51,7 @@ const PurchaseTable = ({handleOpen, setData}) => {
       type: "actions",
       headerName: "Actions",
       flex: 1,
-      renderCell: ({ row: { brandId, price, quantity, productId, _id } }) => {
+      renderCell: ({ row: { brandId, productId, quantity, price, firmId, _id } }) => {
         return [
           <GridActionsCellItem
             key="edit"
@@ -53,14 +59,14 @@ const PurchaseTable = ({handleOpen, setData}) => {
             label="Edit"
             onClick={() => {
               handleOpen()
-              setData({ brandId, price, quantity, productId, _id })
+              setData({ brandId, productId, quantity, price, firmId, _id })
             }}
           />,
           <GridActionsCellItem
             key="delete"
             icon={<DeleteForeverIcon />}
             label="Delete"
-            onClick={() => deleteStocks("sales", _id)}
+            onClick={() => deleteStocks("purchases", _id)}
           />,
         ]
       },
@@ -72,7 +78,7 @@ const PurchaseTable = ({handleOpen, setData}) => {
     <div className="h-[400px] w-[100%] dark:bg-white rounded-lg shadow-2xl">
       <DataGrid
         autoHeight
-        rows={sales}
+        rows={purchases}
         columns={columns}
         initialState={{
           pagination: {

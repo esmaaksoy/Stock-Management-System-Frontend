@@ -19,9 +19,9 @@ const PurchaseForm = ({ open, handleClose, data, setData }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (data._id) {
-      putStock("sales", data);
+      putStock("purchases", data);
     } else {
-      postStock("sales", data);
+      postStock("purchases", data);
     }
     handleClose();
     console.log(data)
@@ -111,7 +111,7 @@ const PurchaseForm = ({ open, handleClose, data, setData }) => {
           type="submit"
           className="block w-full rounded-lg bg-[#ABFB60] px-5 py-3 text-sm font-medium text-black"
         >
-          {data?._id ? "Update Sale" : "Add Sale"}
+          {data?._id ? "Update Purchases" : "Add Purchases"}
         </button>
       </form>
     </Dialog>
