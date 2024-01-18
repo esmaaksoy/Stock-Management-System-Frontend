@@ -45,7 +45,7 @@ const Purchases = () => {
             <div className="dark:text-white ">
               <p className="text-xl font-semibold">Purchases</p>
               <p className="mt-1 font-normal">
-                See information about all purchases
+                See information about all purchase
               </p>
             </div>
             <div className="flex flex-col sm:flex-row w-full shrink-0 gap-2 md:w-max ">
@@ -69,7 +69,6 @@ const Purchases = () => {
               </div>
             </div>
           </div>
-
           <PurchaseTable handleOpen={handleOpen} setData={setData} />
         </>
       )}

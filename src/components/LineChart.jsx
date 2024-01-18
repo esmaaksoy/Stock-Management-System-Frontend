@@ -8,13 +8,17 @@ import {
   import { Square3Stack3DIcon } from "@heroicons/react/24/outline";
 import { useSelector } from "react-redux";
 const LineChart = () => {
+  const { sales, purchases } = useSelector((state) => state.stock)
+  const totalSales = sales?.map((item)=>(item.amount)) || []
+  const date = sales?.map((item)=>new Date(item.createdAt).toLocaleDateString("tr-TR"))
+  console.log(date)
     const chartConfig1 = {
         type: "line",
         height: 240,
         series: [
           {
             name: "Sales",
-            data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
+            data: totalSales,
           },
         ],
         options: {
@@ -52,17 +56,7 @@ const LineChart = () => {
                 fontWeight: 400,
               },
             },
-            categories: [
-              "Apr",
-              "May",
-              "Jun",
-              "Jul",
-              "Aug",
-              "Sep",
-              "Oct",
-              "Nov",
-              "Dec",
-            ],
+            categories: date,
           },
           yaxis: {
             labels: {
@@ -96,7 +90,6 @@ const LineChart = () => {
           },
         },
       };
-      const {sales, purchases} = useSelector((state)=>state.stock)
   return (
     <Card className="shadow-lg flex-1 ">
     <CardHeader

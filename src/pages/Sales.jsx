@@ -22,7 +22,7 @@ const Sales = () => {
   }, []);
 
   return (
-    <div className="dark:bg-gray-900 px-12 py-3 min-h-[100vh]">
+    <div v className="dark:bg-gray-900 px-12 py-3 min-h-[100vh]">
       {error && <NotFound />}
       {!error && !loading && !sales.length && (<NoData/>) }
       {!loading && !error && sales.length > 0 &&  (
@@ -54,13 +54,11 @@ const Sales = () => {
                 />
               </div>
             </div>
-          </div>
-          
+          </div>          
           <SaleTable handleOpen={handleOpen} setData={setData}/>
         </>
       )}
     </div> 
   );
 };
-
 export default Sales;
