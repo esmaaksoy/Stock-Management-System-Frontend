@@ -21,7 +21,7 @@ MUI Data Grid<br>
 Axios<br>
 React toastify<br>
 React router dom <br>
-<b>Tools Utilized in the Development:</b>
+<b>Tools Utilized in the Development:</b><br>
 Postman<br>
 Redux DevTools<br>
 
