@@ -59,15 +59,6 @@ const ProductForm = ({ open, handleClose, data, setData }) => {
           onChange={(e) => handleChange(e, "name", "input")}
           autoComplete="off"
         />
-          <Input
-          label="Quantity"
-          size="lg"
-          type="number"
-          name="quantity"
-          value={data.quantity}
-          onChange={(e) => handleChange(e, "quantity", "input")}
-          autoComplete="off"
-        />  
         <button
           onClick={handleClose}
           type="submit"

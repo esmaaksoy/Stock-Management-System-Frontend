@@ -4,7 +4,7 @@ import BrandForm from "../components/BrandForm";
 import { useSelector } from "react-redux";
 import useStockCalls from "../service/useStockCalls";
 import { searchIcon } from "../helper/icons";
-import { CardSkeloton, NotFound } from "../components/DataMessage";
+import { CardSkeloton, NoData, NotFound } from "../components/DataMessage";
 const Brands = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -74,19 +74,23 @@ const Brands = () => {
               </div>
             </div>
           </div>
-          {loading && <CardSkeloton/>}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
-            {brands?.map((brand) => (
-              <BrandCard
-                key={brand._id}
-                brand={brand}
-                setData={setData}
-                handleOpen={handleOpen}
-              />
-            ))}
-          </div>
+          {loading ? (
+            <CardSkeloton />
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
+              {brands?.map((brand) => (
+                <BrandCard
+                  key={brand._id}
+                  brand={brand}
+                  setData={setData}
+                  handleOpen={handleOpen}
+                />
+              ))}
+            </div>
+          )}
         </>
       )}
+      {!error && !loading && !brands.length && <NoData />}
     </div>
   );
 };

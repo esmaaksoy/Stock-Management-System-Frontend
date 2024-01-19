@@ -3,7 +3,12 @@ import useStockCalls from "../service/useStockCalls";
 import SaleTable from "../components/SaleTable";
 import { useSelector } from "react-redux";
 import SaleForm from "../components/SaleForm";
-import { CardSkeloton, LoadingMsg, NotFound, TableSkeleton } from "../components/DataMessage";
+import {
+  CardSkeloton,
+  LoadingMsg,
+  NotFound,
+  TableSkeleton,
+} from "../components/DataMessage";
 import { NoData } from "../components/DataMessage";
 const Sales = () => {
   const [open, setOpen] = useState(false);
@@ -12,7 +17,12 @@ const Sales = () => {
     setData({ brandId: "", productId: "", quantity: "", price: "" });
     setOpen(false);
   };
-  const [data, setData] = useState({ brandId: "", productId: "", quantity: "", price: "" });
+  const [data, setData] = useState({
+    brandId: "",
+    productId: "",
+    quantity: "",
+    price: "",
+  });
   const { getStocks } = useStockCalls();
   const { sales, error, loading } = useSelector((state) => state.stock);
   useEffect(() => {
@@ -24,7 +34,10 @@ const Sales = () => {
   return (
     <div className="dark:bg-gray-900 px-12 py-3 min-h-[100vh]">
       {error && <NotFound />}
-      {loading && <LoadingMsg/>}
+      {loading ? (
+        <LoadingMsg />
+      ) : (
+        <>
           <div className="pb-10 flex flex-col justify-between gap-8 md:flex-row md:items-center">
             <div className="dark:text-white ">
               <p className="text-xl font-semibold">Sales </p>
@@ -52,10 +65,13 @@ const Sales = () => {
                 />
               </div>
             </div>
-          </div>  
-          {!loading && !sales.length && <NoData/>} 
-          {!loading && sales?.length > 0 && (<SaleTable handleOpen={handleOpen} setData={setData}/> ) }       
-    </div> 
+          </div>
+          {sales.length !== 0 ? <SaleTable handleOpen={handleOpen} setData={setData} /> : <NoData /> }
+          
+        </>
+      )}
+   
+    </div>
   );
 };
 export default Sales;

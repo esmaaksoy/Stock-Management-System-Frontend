@@ -4,7 +4,7 @@ import FirmForm from "../components/FirmForm";
 import { useSelector } from "react-redux";
 import useStockCalls from "../service/useStockCalls";
 import { searchIcon } from "../helper/icons";
-import { CardSkeloton, NotFound } from "../components/DataMessage";
+import { CardSkeloton, NoData, NotFound } from "../components/DataMessage";
 
 const Firms = () => {
   const [open, setOpen] = useState(false);
@@ -27,7 +27,7 @@ const Firms = () => {
   }, [value]);
   return (
     <div className="dark:bg-gray-900 px-12 py-3 min-h-[100vh]">
-      {error && <NotFound/>}
+      {error && <NotFound />}
       {!error && (
         <>
           <div className="pb-4 flex flex-col justify-between gap-8 md:flex-row md:items-center">
@@ -76,17 +76,21 @@ const Firms = () => {
               </div>
             </div>
           </div>
-          {loading && <CardSkeloton/>}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
-            {firms?.map((firm) => (
-              <FirmCard
-                key={firm._id}
-                firm={firm}
-                setData={setData}
-                handleOpen={handleOpen}
-              />
-            ))}
-          </div>
+          {loading ? (
+            <CardSkeloton />
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
+              {firms?.map((firm) => (
+                <FirmCard
+                  key={firm._id}
+                  firm={firm}
+                  setData={setData}
+                  handleOpen={handleOpen}
+                />
+              ))}
+            </div>
+          )}
+          {!error && !loading && !firms.length && <NoData />}
         </>
       )}
     </div>

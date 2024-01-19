@@ -3,7 +3,7 @@ import useStockCalls from "../service/useStockCalls";
 import PurchaseTable from "../components/PurchaseTable";
 import { useSelector } from "react-redux";
 
-import { NotFound, TableSkeleton } from "../components/DataMessage";
+import { LoadingMsg, NotFound, TableSkeleton } from "../components/DataMessage";
 import { NoData } from "../components/DataMessage";
 import PurchaseForm from "../components/PurchaseForm";
 const Purchases = () => {
@@ -37,10 +37,10 @@ const Purchases = () => {
 
   return (
     <div className="dark:bg-gray-900 px-12 py-3 min-h-[100vh]">
-      {error && <NotFound />}
-      {!error && !loading && !purchases.length && <NoData />}
-      {!loading && !error && purchases.length > 0 && (
-        <>
+ {error && <NotFound />}
+      {loading && <LoadingMsg/>} {/* Add a loading skeleton component */}
+     
+      {!error && !loading && purchases.length > 0 && (    <> 
           <div className="pb-10 flex flex-col justify-between gap-8 md:flex-row md:items-center">
             <div className="dark:text-white ">
               <p className="text-xl font-semibold">Purchases</p>
@@ -70,8 +70,8 @@ const Purchases = () => {
             </div>
           </div>
           <PurchaseTable handleOpen={handleOpen} setData={setData} />
-        </>
-      )}
+   </>)}
+   {!error && !loading && purchases.length === 0 && <NoData />}
     </div>
   );
 };
