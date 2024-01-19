@@ -68,9 +68,7 @@ const getPromise = async(endpoints)=>{
     const responses = await Promise.all(
       endpoints.map((endpoint) => axiosWithToken(endpoint))
     );
-
     const data = responses.map((response) => response?.data?.data);
-
     dispatch(getPromiseSuccess({data,endpoints}));
   } catch (error) {
     dispatch(fetchFail());

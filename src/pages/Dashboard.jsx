@@ -4,24 +4,31 @@ import LineChart from "../components/LineChart";
 import BarChart from "../components/BarChart";
 import useStockCalls from "../service/useStockCalls";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { LoadingMsg, NotFound } from "../components/DataMessage";
 
 const Dashboard = () => {
-  const {getStocks} = useStockCalls()
+  const { getStocks, getPromise } = useStockCalls();
   useEffect(() => {
- getStocks("sales")
- getStocks("purchases")
-  }, [])
-  
-  return(
+    getPromise(["sales", "purchases"]);
+  }, []);
+  const { loading, error } = useSelector((state) => state.stock);
+  return (
     <div className="p-4 dark:bg-gray-900 min-h-[100vh]">
-    <Stats />
-    <div className="flex flex-col lg:flex-row gap-3 px-4 py-12 sm:px-6 md:py-16 lg:px-8">
-      <LineChart />
-      <BarChart />
-      <RecentReport />
+      {error && <NotFound />}
+      {loading && <LoadingMsg />}
+      {!error && !loading && (
+        <>
+          <Stats />
+          <div className="flex flex-col lg:flex-row gap-3 px-4 py-12 sm:px-6 md:py-16 lg:px-8">
+            <LineChart />
+            <BarChart />
+            <RecentReport />
+          </div>
+        </>
+      )}
     </div>
-  </div>
-  ) 
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

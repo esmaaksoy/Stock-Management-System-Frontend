@@ -3,7 +3,7 @@ import useStockCalls from "../service/useStockCalls";
 import ProductTable from "../components/ProductTable";
 import { useSelector } from "react-redux";
 import ProductForm from "../components/ProductForm";
-import { NotFound } from "../components/DataMessage";
+import { LoadingMsg, NotFound } from "../components/DataMessage";
 import { NoData } from "../components/DataMessage";
 const Products = () => {
   const [open, setOpen] = useState(false);
@@ -17,18 +17,18 @@ const Products = () => {
     brandId: "",
     name: "",
   });
-  const { getStocks,getPromise } = useStockCalls();
-  const { products, error} = useSelector((state) => state.stock);
+  const { getStocks, getPromise } = useStockCalls();
+  const { products, error, loading } = useSelector((state) => state.stock);
   useEffect(() => {
-    // getStocks("products");
-    // getStocks("categories");
-    // getStocks("brands");
-    getPromise(["products","categories","brands"])
+    getPromise(["products", "categories", "brands"]);
   }, []);
 
   return (
     <div className="dark:bg-gray-900 px-12 py-3 min-h-[100vh]">
-      {error ? <NotFound />:(<>
+      {error && <NotFound />}
+      {loading && <LoadingMsg />}
+      {!error && !loading && (
+        <>
           <div className="pb-10 flex flex-col justify-between gap-8 md:flex-row md:items-center">
             <div className="dark:text-white ">
               <p className="text-xl font-semibold">Products </p>
@@ -54,12 +54,12 @@ const Products = () => {
                   data={data}
                   setData={setData}
                 />
-
               </div>
             </div>
           </div>
-          <ProductTable /> </>)}
-      
+          {products.length === 0 ? <NoData /> : <ProductTable />}
+        </>
+      )}
     </div>
   );
 };

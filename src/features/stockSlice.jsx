@@ -22,21 +22,12 @@ const stockSlice = createSlice({
       state.loading = false;
       state.error = false;
     },
-    // getProPurBranFirmSuccess: (state, {payload})=>{
-    //   state.products = payload[0]
-    //   state.purchases = payload[1]
-    //   state.brands = payload[2]
-    //   state.firms = payload[3]
-    // },
     getPromiseSuccess: (state, { payload }) => {
       state.loading = false;
-
       const dataKeys = payload?.endpoints;
-      console.log(payload.data, "payload");
       dataKeys.forEach((key, index) => {
         state[key] = payload.data[index];
       });
-
       state.error = false;
     },
     fetchFail: (state) => {

@@ -26,19 +26,14 @@ const Sales = () => {
   const { getStocks,getPromise } = useStockCalls();
   const { sales, error, loading } = useSelector((state) => state.stock);
   useEffect(() => {
-    // getStocks("products");
-    // getStocks("sales");
-    // getStocks("brands");
     getPromise(["products","sales","brands"])
   }, []);
 
   return (
     <div className="dark:bg-gray-900 px-12 py-3 min-h-[100vh]">
       {error && <NotFound />}
-      {loading ? (
-        <LoadingMsg />
-      ) : (
-        <>
+      {loading && <LoadingMsg />}
+      {!error && !loading && (  <>
           <div className="pb-10 flex flex-col justify-between gap-8 md:flex-row md:items-center">
             <div className="dark:text-white ">
               <p className="text-xl font-semibold">Sales </p>
@@ -67,10 +62,12 @@ const Sales = () => {
               </div>
             </div>
           </div>
-          {sales.length !== 0 ? <SaleTable handleOpen={handleOpen} setData={setData} /> : <NoData /> }
+          {sales.length === 0 ?  <NoData /> : <SaleTable handleOpen={handleOpen} setData={setData} />}
           
-        </>
-      )}
+        </>)}
+     
+      
+    
    
     </div>
   );
