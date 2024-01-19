@@ -23,7 +23,7 @@ const LoginForm = ({ handleChange, values, touched, errors, handleBlur }) => {
     <Form>
       <div className="mx-auto mb-0 mt-8 max-w-md space-y-4">
         {inputData.map(({label, name, type, placeholder, icon })=>( 
-        <div>
+        <div key={name}>
           <label htmlFor={label} className="sr-only">
           {label}
           </label>
@@ -35,8 +35,8 @@ const LoginForm = ({ handleChange, values, touched, errors, handleBlur }) => {
               placeholder={placeholder}
               value={values[name]}
               onChange={handleChange}
-              onBlur={handleBlur}
-              autocomplete="off"
+              onBlur={handleBlur}            
+              autoComplete="off"
             />
             <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
               {icon}     

@@ -21,6 +21,7 @@ const SaleForm = ({ open, handleClose, data, setData }) => {
       putStock("sales", data);
     } else {
       postStock("sales", data);
+      console.log(data)
     }
     handleClose();
   };

@@ -4,10 +4,8 @@ import SaleTable from "../components/SaleTable";
 import { useSelector } from "react-redux";
 import SaleForm from "../components/SaleForm";
 import {
-  CardSkeloton,
   LoadingMsg,
   NotFound,
-  TableSkeleton,
 } from "../components/DataMessage";
 import { NoData } from "../components/DataMessage";
 const Sales = () => {
@@ -23,17 +21,18 @@ const Sales = () => {
     quantity: "",
     price: "",
   });
-  const { getStocks,getPromise } = useStockCalls();
+  const {getPromise } = useStockCalls();
   const { sales, error, loading } = useSelector((state) => state.stock);
   useEffect(() => {
-    getPromise(["products","sales","brands"])
+    getPromise(["products", "sales", "brands"]);
   }, []);
 
   return (
     <div className="dark:bg-gray-900 px-12 py-3 min-h-[100vh]">
       {error && <NotFound />}
       {loading && <LoadingMsg />}
-      {!error && !loading && (  <>
+      {!error && !loading && (
+        <>
           <div className="pb-10 flex flex-col justify-between gap-8 md:flex-row md:items-center">
             <div className="dark:text-white ">
               <p className="text-xl font-semibold">Sales </p>
@@ -62,13 +61,13 @@ const Sales = () => {
               </div>
             </div>
           </div>
-          {sales.length === 0 ?  <NoData /> : <SaleTable handleOpen={handleOpen} setData={setData} />}
-          
-        </>)}
-     
-      
-    
-   
+          {sales.length === 0 ? (
+            <NoData />
+          ) : (
+            <SaleTable handleOpen={handleOpen} setData={setData} />
+          )}
+        </>
+      )}
     </div>
   );
 };
