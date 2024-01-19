@@ -26,13 +26,11 @@ const Purchases = () => {
     quantity: "",
     price: "",
   });
-  const { getStocks } = useStockCalls();
+  const { getStocks ,getPromise} = useStockCalls();
   const { purchases, error, loading } = useSelector((state) => state.stock);
+  
   useEffect(() => {
-     getStocks("products")
-    getStocks("purchases")
-    getStocks("brands")
-    getStocks("firms")
+    getPromise(["products","purchases","brands","firms"])
   }, []);
 
   return (
@@ -40,7 +38,7 @@ const Purchases = () => {
  {error && <NotFound />}
       {loading && <LoadingMsg/>} {/* Add a loading skeleton component */}
      
-      {!error && !loading && purchases.length > 0 && (    <> 
+      {!error && !loading &&(    <> 
           <div className="pb-10 flex flex-col justify-between gap-8 md:flex-row md:items-center">
             <div className="dark:text-white ">
               <p className="text-xl font-semibold">Purchases</p>

@@ -36,8 +36,8 @@ export const CardSkeloton = () => {
   const arr = [1, 2, 3, 4, 5, 6, 7];
   return (
     <div className="flex flex-wrap gap-4 justify-center">
-      {arr.map((item) => (
-        <div className="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96 animate-pulse">
+      {arr.map((item, index) => (
+        <div key={index} className="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96 animate-pulse">
           <div className="relative grid h-56 mx-4 mt-4 overflow-hidden text-gray-700 bg-gray-300 bg-clip-border rounded-xl place-items-center">
             {loadingIcon}
           </div>

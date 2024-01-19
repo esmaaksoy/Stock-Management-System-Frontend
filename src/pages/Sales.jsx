@@ -23,12 +23,13 @@ const Sales = () => {
     quantity: "",
     price: "",
   });
-  const { getStocks } = useStockCalls();
+  const { getStocks,getPromise } = useStockCalls();
   const { sales, error, loading } = useSelector((state) => state.stock);
   useEffect(() => {
-    getStocks("products");
-    getStocks("sales");
-    getStocks("brands");
+    // getStocks("products");
+    // getStocks("sales");
+    // getStocks("brands");
+    getPromise(["products","sales","brands"])
   }, []);
 
   return (

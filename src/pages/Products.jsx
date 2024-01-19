@@ -17,17 +17,18 @@ const Products = () => {
     brandId: "",
     name: "",
   });
-  const { getStocks } = useStockCalls();
+  const { getStocks,getPromise } = useStockCalls();
   const { products, error} = useSelector((state) => state.stock);
   useEffect(() => {
-    getStocks("products");
-    getStocks("categories");
-    getStocks("brands");
+    // getStocks("products");
+    // getStocks("categories");
+    // getStocks("brands");
+    getPromise(["products","categories","brands"])
   }, []);
 
   return (
     <div className="dark:bg-gray-900 px-12 py-3 min-h-[100vh]">
-      {error && <NotFound />}
+      {error ? <NotFound />:(<>
           <div className="pb-10 flex flex-col justify-between gap-8 md:flex-row md:items-center">
             <div className="dark:text-white ">
               <p className="text-xl font-semibold">Products </p>
@@ -57,8 +58,9 @@ const Products = () => {
               </div>
             </div>
           </div>
-          <ProductTable />
-    </div> 
+          <ProductTable /> </>)}
+      
+    </div>
   );
 };
 

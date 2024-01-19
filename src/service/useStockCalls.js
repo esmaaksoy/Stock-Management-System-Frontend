@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import useAxios from "./useAxios";
 import { fetchFail, fetchStart } from "../features/stockSlice";
-import { getStockSuccess } from "../features/stockSlice";
+import { getStockSuccess ,getPromiseSuccess} from "../features/stockSlice";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 const useStockCalls = () => {
   const dispatch = useDispatch();
@@ -62,27 +62,44 @@ const useStockCalls = () => {
       dispatch(fetchFail());
     }
   };
-  const getProPurBranFirm = async () => {
-    dispatch(fetchStart());
-    try {
-      const [products, purchases, brands, firms] = await Promise.all([
-        axiosWithToken("/products/"),
-        axiosWithToken("/purchases/"),
-        axiosWithToken("/brands/"),
-        axiosWithToken("/firms/"),
-      ]);
-      dispatch(
-        getProPurBranFirm([
-          products?.data?.data,
-          purchases?.data?.data,
-          brands?.data?.data,
-          firms?.data?.data,
-        ])
-      );
-    } catch (error) {
-      dispatch(fetchFail());
-    }
-  };
+const getPromise = async(endpoints)=>{
+  dispatch(fetchStart());
+  try {
+    const responses = await Promise.all(
+      endpoints.map((endpoint) => axiosWithToken(endpoint))
+    );
+
+    const data = responses.map((response) => response?.data?.data);
+
+    dispatch(getPromiseSuccess({data,endpoints}));
+  } catch (error) {
+    dispatch(fetchFail());
+  }
+
+}
+
+
+  // const getProPurBranFirm = async () => {
+  //   dispatch(fetchStart());
+  //   try {
+  //     const [products, purchases, brands, firms] = await Promise.all([
+  //       axiosWithToken("/products/"),
+  //       axiosWithToken("/purchases/"),
+  //       axiosWithToken("/brands/"),
+  //       axiosWithToken("/firms/"),
+  //     ]);
+  //     dispatch(
+  //       getProPurBranFirm([
+  //         products?.data?.data,
+  //         purchases?.data?.data,
+  //         brands?.data?.data,
+  //         firms?.data?.data,
+  //       ])
+  //     );
+  //   } catch (error) {
+  //     dispatch(fetchFail());
+  //   }
+  // };
 
   return {
     getStocks,
@@ -90,7 +107,8 @@ const useStockCalls = () => {
     postStock,
     putStock,
     searchStock,
-    getProPurBranFirm,
+    // getProPurBranFirm,
+    getPromise,
   };
 };
 
