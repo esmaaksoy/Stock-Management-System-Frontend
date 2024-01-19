@@ -3,35 +3,35 @@ This project is a stock management application developed using **Node.js** on th
 ## Screenshots
 ![Project snapshot](./stock.gif) 
 
-[Stock Management System Live Page]()
+[Stock Management System Live Page](https://stock-management-system-esma.netlify.app/)
 
 ## Tech/framework used
 <b>Built with</b> <br>
-React
-React-Redux
-Redux Toolkit
-Redux-persist
-Yup
-Formik
-Material-UI
-Tailwind CSS
-Material Tailwind
-ApexCharts
-MUI Data Grid
-Axios
-React toastify
+React<br>
+React-Redux<br>
+Redux Toolkit<br>
+Redux-persist<br>
+Yup<br>
+Formik<br>
+Material-UI<br>
+Tailwind CSS<br>
+Material Tailwind<br>
+ApexCharts<br>
+MUI Data Grid<br>
+Axios<br>
+React toastify<br>
 React router dom <br>
 <b>Tools Utilized in the Development:</b>
-Postman
-Redux DevTools
+Postman<br>
+Redux DevTools<br>
 
 ## How to use?
-If you have an account, you can log in; otherwise, you can create a new account.
-Easily add new information through the application.
-You can delete or edit existing information at any time.
-You can enter product, firm, brand, etc., update stocks, and sell products currently in stock
-Perform sorting or filtering operations on the displayed data in tabular form.
-Access graphical representation of the data.
+If you have an account, you can log in; otherwise, you can create a new account.<br>
+Easily add new information through the application.<br>
+You can delete or edit existing information at any time.<br>
+You can enter product, firm, brand, etc., update stocks, and sell products currently in stock<br>
+Perform sorting or filtering operations on the displayed data in tabular form.<br>
+Access graphical representation of the data.<br>
 
 ## Description
 To run the project, first install the dependencies:
