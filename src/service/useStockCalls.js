@@ -76,36 +76,12 @@ const getPromise = async(endpoints)=>{
 
 }
 
-
-  // const getProPurBranFirm = async () => {
-  //   dispatch(fetchStart());
-  //   try {
-  //     const [products, purchases, brands, firms] = await Promise.all([
-  //       axiosWithToken("/products/"),
-  //       axiosWithToken("/purchases/"),
-  //       axiosWithToken("/brands/"),
-  //       axiosWithToken("/firms/"),
-  //     ]);
-  //     dispatch(
-  //       getProPurBranFirm([
-  //         products?.data?.data,
-  //         purchases?.data?.data,
-  //         brands?.data?.data,
-  //         firms?.data?.data,
-  //       ])
-  //     );
-  //   } catch (error) {
-  //     dispatch(fetchFail());
-  //   }
-  // };
-
   return {
     getStocks,
     deleteStocks,
     postStock,
     putStock,
     searchStock,
-    // getProPurBranFirm,
     getPromise,
   };
 };
