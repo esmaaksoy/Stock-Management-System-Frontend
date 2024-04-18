@@ -11,7 +11,7 @@ const PurchaseTable = ({handleOpen, setData}) => {
       field: "createdAt",
       headerName: "Date",
       flex: 1,
-      renderCell: ({ row }) => new Date(row.createdAt).toLocaleDateString("tr-TR"),
+      renderCell: ({ row }) => row.createdAtStr.slice(0,22),
     },
     {
         field: "firmId",

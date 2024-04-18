@@ -22,9 +22,14 @@ const Firms = () => {
     image: "",
   });
   const [value, setValue] = useState("");
+
   useEffect(() => {
     searchStock("firms", value);
   }, [value]);
+
+
+console.log(firms)
+
   return (
     <div className="dark:bg-gray-900 px-12 py-3 min-h-[100vh]">
       {error && <NotFound />}

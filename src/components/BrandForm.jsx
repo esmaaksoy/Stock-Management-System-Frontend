@@ -21,8 +21,8 @@ const BrandForm = ({open,handleClose, data, setData}) => {
         postStock("brands", data);
       }
       handleClose();
-     
     };
+    
     return (
       <Dialog
       open={open}

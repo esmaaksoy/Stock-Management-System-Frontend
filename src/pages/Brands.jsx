@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import useStockCalls from "../service/useStockCalls";
 import { searchIcon } from "../helper/icons";
 import { CardSkeloton, NoData, NotFound } from "../components/DataMessage";
+
 const Brands = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -12,16 +13,21 @@ const Brands = () => {
     setOpen(false);
     setData({ name: "", image: "" });
   };
+
   const [data, setData] = useState({
     name: "",
     image: "",
   });
+
   const { brands, loading, error } = useSelector((state) => state.stock);
   const { searchStock } = useStockCalls();
   const [value, setValue] = useState("");
+
   useEffect(() => {
     searchStock("brands", value);
   }, [value]);
+
+
   return (
     <div className="dark:bg-gray-900 px-12 py-3 min-h-[100vh]">
       {error && <NotFound />}

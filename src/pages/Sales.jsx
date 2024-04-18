@@ -8,6 +8,7 @@ import {
   NotFound,
 } from "../components/DataMessage";
 import { NoData } from "../components/DataMessage";
+
 const Sales = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -15,12 +16,14 @@ const Sales = () => {
     setData({ brandId: "", productId: "", quantity: "", price: "" });
     setOpen(false);
   };
+
   const [data, setData] = useState({
     brandId: "",
     productId: "",
     quantity: "",
     price: "",
   });
+  
   const {getPromise } = useStockCalls();
   const { sales, error, loading } = useSelector((state) => state.stock);
   useEffect(() => {
