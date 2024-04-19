@@ -2,6 +2,7 @@ import { Form } from "formik";
 import { object, string } from "yup";
 import { NavLink } from "react-router-dom";
 import { EmailIcon, PasswordIcon } from "../helper/icons";
+
 export const loginSchema = object({
   email: string()
     .email("Please enter a valid email.")
@@ -17,35 +18,49 @@ export const loginSchema = object({
       "Password must contain at least one special character (@$!%*?&)."
     ),
 });
-const inputData=[{label:"email", name:"email", type:"email", placeholder:"Enter email", icon:<EmailIcon/> },{label:"password", name:"password", type:"password", placeholder:"Enter password", icon:<PasswordIcon/> }]
+
+const inputData = [
+  {
+    label: "email",
+    name: "email",
+    type: "email",
+    placeholder: "Enter email",
+  },
+  {
+    label: "password",
+    name: "password",
+    type: "password",
+    placeholder: "Enter password",
+  },
+];
 const LoginForm = ({ handleChange, values, touched, errors, handleBlur }) => {
   return (
     <Form>
       <div className="mx-auto mb-0 mt-8 max-w-md space-y-4">
-        {inputData.map(({label, name, type, placeholder, icon })=>( 
-        <div key={name}>
-          <label htmlFor={label} className="sr-only">
-          {label}
-          </label>
-          <div className="relative">
-            <input
-              name={name}
-              type={type}
-              className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-              placeholder={placeholder}
-              value={values[name]}
-              onChange={handleChange}
-              onBlur={handleBlur}            
-              autoComplete="off"
-            />
-            <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
-              {icon}     
-            </span>
+        {inputData.map(({ label, name, type, placeholder}) => (
+          <div key={name}>
+            <label htmlFor={label} className="sr-only">
+              {label}
+            </label>
+            <div className="relative">
+              <input
+                name={name}
+                type={type}
+                className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                placeholder={placeholder}
+                value={values[name]}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                autoComplete="off"
+              />
+            </div>
+            {touched[name] && Boolean(errors[name]) && (
+              <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-2">
+                {errors[name]}
+              </span>
+            )}
           </div>
-          {touched[name] && Boolean(errors[name]) && (
-            <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-2">{errors[name]}</span>
-          )}
-        </div>))}
+        ))}
         <div className="flex items-center justify-between">
           <p className="text-sm text-gray-500">
             No account?
